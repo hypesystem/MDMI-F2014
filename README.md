@@ -10,5 +10,8 @@ Recommend songs based on the structure of the songs (unlike usual recommendation
 Questions
 ---------
 
+The questions are in prioritized order. The idea is to start at the top and complete as many as possible.
+
 1. Given a song, recommend songs that are *similar in structure*.
 2. Given a user, recommend songs *similar in structure* those the user listens to.
+3. Given a new song, estimate the *hotness* it will achieve once released.
