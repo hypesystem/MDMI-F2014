@@ -1,4 +1,6 @@
-﻿namespace MillionSongsDataWrapper
+﻿using System.Collections.Generic;
+
+namespace MillionSongsDataWrapper
 {
     public class SegmentStats
     {
@@ -21,5 +23,29 @@
             Pitches = pitches;
             Timbre = timbre;
         }
+
+        private List<Aggregates> _aggregatesList;
+
+        public List<Aggregates> AggregatesList
+        {
+            get
+            {
+                if (_aggregatesList == null)
+                {
+                _aggregatesList = new List<Aggregates>();
+                _aggregatesList.Add(LoudnessStart);
+                _aggregatesList.Add(LoudnessMax);
+                _aggregatesList.Add(LoudnessMaxTime);
+                _aggregatesList.Add(Duration);
+                _aggregatesList.AddRange(Pitches);
+                _aggregatesList.AddRange(Timbre);
+                }
+                return _aggregatesList;
+                    
+
+            }
+        }
+
+
     }
 }

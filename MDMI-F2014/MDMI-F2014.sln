@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillionSongsDataWrapper", "MillionSongsDataWrapper\MillionSongsDataWrapper.csproj", "{24796E43-88EA-48F0-AFC1-1BB2ECDBC97D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LRNWriter", "LRNWriter\LRNWriter.csproj", "{7E9961A1-A527-4641-B062-C20A36062F1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LRNWriterTest", "LRNWriterTest\LRNWriterTest.csproj", "{C7F3AF20-1DD6-40AF-BE19-BEDA8C0A807D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{24796E43-88EA-48F0-AFC1-1BB2ECDBC97D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24796E43-88EA-48F0-AFC1-1BB2ECDBC97D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24796E43-88EA-48F0-AFC1-1BB2ECDBC97D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E9961A1-A527-4641-B062-C20A36062F1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E9961A1-A527-4641-B062-C20A36062F1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E9961A1-A527-4641-B062-C20A36062F1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E9961A1-A527-4641-B062-C20A36062F1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7F3AF20-1DD6-40AF-BE19-BEDA8C0A807D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7F3AF20-1DD6-40AF-BE19-BEDA8C0A807D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7F3AF20-1DD6-40AF-BE19-BEDA8C0A807D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7F3AF20-1DD6-40AF-BE19-BEDA8C0A807D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
