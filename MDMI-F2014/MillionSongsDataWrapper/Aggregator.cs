@@ -20,6 +20,14 @@ namespace MillionSongsDataWrapper
             return result;
         }
 
+        static SectionStats AggregateSections(IEnumerable<Section> sections)
+        {
+            var confidenceMean = sections.Average(s => s.Confidence);
+            var duration = Aggregate(sections.Select(s => s.Duration));
+            var result = new SectionStats(confidenceMean, duration,sections.Count());
+            return result;
+        }
+
         private static Aggregates[] Aggregate(IEnumerable<double[]> doubles)
         {
             var result = new Aggregates[doubles.Count()];

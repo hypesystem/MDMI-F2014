@@ -53,6 +53,7 @@
     <Compile Include="Aggregator.cs" />
     <Compile Include="Key.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Section.cs" />
     <Compile Include="SectionStats.cs" />
     <Compile Include="Segment.cs" />
     <Compile Include="SegmentStats.cs" />

@@ -8,5 +8,13 @@ namespace MillionSongsDataWrapper
 {
     class Section
     {
+        public readonly double Confidence;
+        public readonly double Duration;
+
+        public Section(double confidence, double duration)
+        {
+            Confidence = confidence;
+            Duration = duration;
+        }
     }
 }
