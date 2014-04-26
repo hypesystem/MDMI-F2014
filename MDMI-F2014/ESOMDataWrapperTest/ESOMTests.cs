@@ -4,8 +4,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ESOMDataWrapperTest
 {		
-		
-		
     [TestClass]
     public class ESOMTests
     {
