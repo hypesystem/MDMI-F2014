@@ -11,6 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LRNWriter", "LRNWriter\LRNW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LRNWriterTest", "LRNWriterTest\LRNWriterTest.csproj", "{C7F3AF20-1DD6-40AF-BE19-BEDA8C0A807D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HDF5Reader", "HDF5Reader\HDF5Reader.csproj", "{021C7639-A2ED-4004-91FC-3EC0B6EFC4C6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{24796E43-88EA-48F0-AFC1-1BB2ECDBC97D} = {24796E43-88EA-48F0-AFC1-1BB2ECDBC97D}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +42,10 @@ Global
 		{C7F3AF20-1DD6-40AF-BE19-BEDA8C0A807D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7F3AF20-1DD6-40AF-BE19-BEDA8C0A807D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7F3AF20-1DD6-40AF-BE19-BEDA8C0A807D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{021C7639-A2ED-4004-91FC-3EC0B6EFC4C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{021C7639-A2ED-4004-91FC-3EC0B6EFC4C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{021C7639-A2ED-4004-91FC-3EC0B6EFC4C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{021C7639-A2ED-4004-91FC-3EC0B6EFC4C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
