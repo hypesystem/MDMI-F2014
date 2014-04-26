@@ -30,8 +30,8 @@ namespace ESOMDataWrapperTest
                 {
                     for (var n = 0; n < 3; n++)
                     {
-                        Assert.AreEqual(expected.GetSOM()[i,j,n],
-                            esom.GetSOM()[i,j,n]);
+                        Assert.AreEqual(expected.Data[i,j,n],
+                            esom.Data[i,j,n]);
                     }
                 }
             }
