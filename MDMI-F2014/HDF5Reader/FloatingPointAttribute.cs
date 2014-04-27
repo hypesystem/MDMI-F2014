@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HDF5Reader
 {
@@ -12,10 +8,8 @@ namespace HDF5Reader
 
         public override object Parse(byte[] data)
         {
-            if (Length == 32) //float
-                throw new NotImplementedException();
-            else if (Length == 64) //double
-                throw new NotImplementedException();
+            if (Length == 64) //double
+                return BitConverter.ToDouble(data,0);
             throw new NotImplementedException();
         }
     }

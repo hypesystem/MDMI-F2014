@@ -15,11 +15,10 @@ namespace HDF5Reader
 
         public override object Parse(byte[] data)
         {
-            //TODO: Implement this!
             if (Length == 64)
-                throw new NotImplementedException();
+                return BitConverter.ToInt64(data,0);
             else if (Length == 32)
-                throw new NotImplementedException();
+                return BitConverter.ToInt32(data,0);
             throw new NotImplementedException();
         }
     }
