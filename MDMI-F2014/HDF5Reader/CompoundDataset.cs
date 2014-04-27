@@ -52,8 +52,9 @@ namespace HDF5Reader
             H5A.read(attr, mtype, new H5Array<byte>(buffer));
 
             var attr_name = Encoding.GetString(buffer);
+            var attr_info = H5A.getInfo(attr);
 
-            _attributes[i] = new StringAttribute(attr_name, 32);
+            _attributes[i] = new StringAttribute(attr_name, attr_info.dataSize);
             //TODO: Figure out which type of attribute it should be!
             throw new NotImplementedException();
             Console.WriteLine("Attribute: " + _attributes[i]);
@@ -85,13 +86,13 @@ namespace HDF5Reader
         {
             //TODO: Make work with several rows!
 
-            int ptr = 0;
+            long ptr = 0;
 
             var row_data = new Dictionary<string, object>();
 
             foreach (var attr in _attributes)
             {
-                row_data[attr.Name] = attr.Parse(_row_data.Skip(ptr).Take(attr.Length).ToArray());
+                row_data[attr.Name] = attr.Parse(_row_data.Skip((int)ptr).Take((int)attr.Length).ToArray());
                 ptr += attr.Length;
             }
 

@@ -11,9 +11,9 @@ namespace HDF5Reader
         public readonly Encoding Encoding = new ASCIIEncoding();
 
         public readonly string Name;
-        public readonly int Length;
+        public readonly long Length;
 
-        public Attribute(string name, int length)
+        public Attribute(string name, long length)
         {
             Name = name;
             Length = length;

@@ -8,7 +8,7 @@ namespace HDF5Reader
 {
     class IntegerAttribute : Attribute
     {
-        public IntegerAttribute(string name, int length) : base(name, length) {
+        public IntegerAttribute(string name, long length) : base(name, length) {
             if(length != 64 && length != 32)
                 throw new ArgumentException("Unsupported length of integer: " + Length + " bits", "Length");
         }

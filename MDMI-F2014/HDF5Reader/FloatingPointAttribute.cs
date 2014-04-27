@@ -4,7 +4,7 @@ namespace HDF5Reader
 {
     class FloatingPointAttribute : Attribute
     {
-        public FloatingPointAttribute(string name, int length) : base(name, length) { }
+        public FloatingPointAttribute(string name, long length) : base(name, length) { }
 
         public override object Parse(byte[] data)
         {
