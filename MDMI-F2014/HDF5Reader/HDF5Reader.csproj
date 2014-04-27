@@ -45,10 +45,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Container.cs" />
+    <Compile Include="CompoundDataset.cs" />
+    <Compile Include="Dataset.cs" />
+    <Compile Include="File.cs" />
+    <Compile Include="FloatingPointAttribute.cs" />
+    <Compile Include="Group.cs" />
+    <Compile Include="Attribute.cs" />
+    <Compile Include="IntegerAttribute.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Row.cs" />
     <Compile Include="SongBuilder.cs" />
     <Compile Include="SongReader.cs" />
+    <Compile Include="StringAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

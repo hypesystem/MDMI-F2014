@@ -13,7 +13,12 @@ namespace HDF5Reader
 
         static void Main(string[] args)
         {
-            SongReader.ReadSongFile(file_path);
+            var file = new File(file_path);
+            var metadata = file.GetGroup("metadata");
+            var songs_data = metadata.GetDataset("songs");
+
+
+            //SongReader.ReadSongFile(file_path);
 
             /*
             H5.Open();
