@@ -98,9 +98,11 @@ namespace HDF5Reader
             _rows.Add(new Row(row_data));
         }
 
-        public Row indexer(int i) {
-            //TODO: Fix indexer to be actual indexer.
-            return _rows[i];
+        public Row this[int i] {
+            get
+            {
+                return _rows[i];
+            }
         }
     }
 }
