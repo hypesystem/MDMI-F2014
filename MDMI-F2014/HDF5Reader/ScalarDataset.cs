@@ -18,14 +18,12 @@ namespace HDF5Reader
             var dtype = H5D.getType(Id);
             var size = H5T.getSize(dtype);
 
-            var space = H5D.getSpace(Id);
-
             byte[,] _row_data = new byte[FindNumberOfRows(),size];
             H5D.read(Id, dtype, new H5Array<byte>(_row_data));
 
             //Find data type+size
             var member_type = H5T.getClass(dtype).ToString();
-            var member_size = H5T.getSize(dtype);
+            var member_size = size;
 
             //Setup parser
             Attribute parser = null;

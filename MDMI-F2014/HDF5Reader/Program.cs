@@ -13,66 +13,7 @@ namespace HDF5Reader
 
         static void Main(string[] args)
         {
-            var file = new File(file_path);
-            var metadata = file.GetGroup("metadata");
-
-            using(var songs_data = metadata.GetCompoundDataset("songs"))
-            {
-                var row = songs_data[0];
-
-                Console.WriteLine("Artist Name: " + row.GetString("artist_name"));
-                Console.ReadKey();
-            }
-
-            using (var artist_terms_data = metadata.GetScalarDataset("artist_terms"))
-            {
-                Console.WriteLine("Terms:");
-                foreach (var row in artist_terms_data)
-                {
-                    Console.WriteLine(row.GetString("data"));
-                }
-                Console.ReadKey();
-            }
-
-            //SongReader.ReadSongFile(file_path);
-
-            /*
-            H5.Open();
-            var is_hdf5 = H5F.is_hdf5(file_path);
-            Console.WriteLine("Is hdf5? " + is_hdf5);
-            Console.ReadKey();
-
-            var file_id = H5F.open(file_path, H5F.OpenMode.ACC_RDONLY);
-            Console.WriteLine("Opened file.");
-
-            var grp_id = H5G.open(file_id, "analysis");
-
-            var set_info = H5D.open(grp_id, "segments_loudness_max");
-            Console.Write("LoudnessMax # entries: ");
-            PrintArray(H5S.getSimpleExtentDims(H5D.getSpace(set_info)));
-            Console.ReadKey();
-
-            Console.WriteLine("LoudnessMax entries: ");
-
-            //Shutdown.
-            H5F.close(file_id);
-            H5.Close();
-            Console.WriteLine("Everything closed.");
-            Console.ReadKey();
-            */
-        }
-
-        public static void PrintArray(Int64[] arr)
-        {
-            Console.Write("(" + arr.Length + ") [");
-            var first = true;
-            foreach (var i in arr)
-            {
-                if (first) first = false;
-                else Console.Write(",");
-                Console.Write(i);
-            }
-            Console.WriteLine("]");
+            var info = SongReader.ReadSongFile(file_path);
         }
     }
 }
