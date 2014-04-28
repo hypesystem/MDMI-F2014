@@ -4,6 +4,7 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HDF5DotNet;
 
 namespace HDF5Reader
 {
@@ -13,6 +14,38 @@ namespace HDF5Reader
 
         protected override void LoadData()
         {
+            var dtype = H5D.getType(Id);
+            var size = H5T.getSize(dtype);
+
+            var space = H5D.getSpace(Id);
+            var new_size = H5S.getSimpleExtentDims(space);
+
+            foreach (var dim in new_size)
+            {
+                Console.WriteLine("Dim: " + dim);
+            }
+            Console.WriteLine("Size: " + size);
+
+            byte[,] _row_data = new byte[new_size[0],size];
+            H5D.read(Id, dtype, new H5Array<byte>(_row_data));
+
+            Console.WriteLine("Row Data: " + _row_data.GetLongLength(0) + "," + _row_data.GetLongLength(1));
+
+            var _row = new byte[size];
+            for (int i = 0; i < size; i++ )
+            {
+                _row[i] = _row_data[0, i];
+            }
+
+            var _row2 = new byte[size];
+            for (int i = 0; i < size; i++)
+            {
+                _row2[i] = _row_data[1, i];
+            }
+
+            Console.WriteLine(Encoding.GetString(_row));
+            Console.WriteLine(Encoding.GetString(_row2));
+
             throw new NotImplementedException();
         }
 
