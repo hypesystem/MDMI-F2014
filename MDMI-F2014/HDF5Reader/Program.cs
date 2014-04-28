@@ -17,6 +17,10 @@ namespace HDF5Reader
             var metadata = file.GetGroup("metadata");
             var songs_data = metadata.GetDataset("songs");
 
+            var row = songs_data[0];
+
+            Console.WriteLine("Artist Name: " + row.GetString("artist_name"));
+            Console.ReadKey();
 
             //SongReader.ReadSongFile(file_path);
 

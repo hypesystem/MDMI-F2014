@@ -26,7 +26,7 @@ namespace HDF5Reader
             var num_attrs = FindNumberOfAttributes();
             _attributes = new Attribute[num_attrs];
 
-            for (long i = 0; i < num_attrs; i++)
+            for (int i = 0; i < num_attrs; i++)
             {
                 FindAttribute(i);
             }
@@ -34,12 +34,10 @@ namespace HDF5Reader
 
         long FindNumberOfAttributes()
         {
-            //return 20;
-            //TODO: Make this actually work!
-            throw new NotImplementedException();
+            return H5T.getNMembers(H5D.getType(Id));
         }
 
-        void FindAttribute(long i)
+        void FindAttribute(int i)
         {
             var attr_field = "FIELD_" + i + "_NAME";
 
@@ -51,13 +49,28 @@ namespace HDF5Reader
             var buffer = new byte[size];
             H5A.read(attr, mtype, new H5Array<byte>(buffer));
 
-            var attr_name = Encoding.GetString(buffer);
-            var attr_info = H5A.getInfo(attr);
+            var attr_datatype = H5T.getMemberType(H5D.getType(Id), i);
+            var attr_size = H5T.getSize(attr_datatype);
 
-            _attributes[i] = new StringAttribute(attr_name, attr_info.dataSize);
-            //TODO: Figure out which type of attribute it should be!
-            throw new NotImplementedException();
-            Console.WriteLine("Attribute: " + _attributes[i]);
+            var attr_class = H5T.getMemberClass(H5D.getType(Id), i).ToString();
+            var attr_name = Encoding.GetString(buffer).Replace('\0', ' ').Trim();
+            
+            Console.WriteLine(attr_name + ": " + attr_class + " (" + attr_size + ")");
+
+            switch (attr_class)
+            {
+                case "STRING":
+                    _attributes[i] = new StringAttribute(attr_name, attr_size);
+                    break;
+                case "INTEGER":
+                    _attributes[i] = new IntegerAttribute(attr_name, attr_size);
+                    break;
+                case "FLOAT":
+                    _attributes[i] = new FloatingPointAttribute(attr_name, attr_size);
+                    break;
+                default:
+                    throw new ArgumentException("Unknown attribute type " + attr_class, "attr_type");
+            }
         }
 
         void LoadAllRows()
@@ -65,7 +78,7 @@ namespace HDF5Reader
             var num_rows = FindNumberOfRows();
             LoadRowData();
 
-            for (long i = 0; i < num_rows; i++)
+            for (int i = 0; i < num_rows; i++)
             {
                 LoadRow(i);
             }
@@ -82,19 +95,23 @@ namespace HDF5Reader
             //TODO: Does this work with more than one row? Dunno. Probs not.
         }
 
-        void LoadRow(long i)
+        void LoadRow(int i)
         {
             //TODO: Make work with several rows!
 
-            long ptr = 0;
+            Console.WriteLine("Loading row...");
+
+            int ptr = 0;
 
             var row_data = new Dictionary<string, object>();
 
             foreach (var attr in _attributes)
             {
-                row_data[attr.Name] = attr.Parse(_row_data.Skip((int)ptr).Take((int)attr.Length).ToArray());
+                row_data[attr.Name] = attr.Parse(_row_data.Skip(ptr).Take(attr.Length).ToArray());
                 ptr += attr.Length;
             }
+
+            Console.WriteLine("Row loaded...");
 
             _rows.Add(new Row(row_data));
         }

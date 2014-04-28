@@ -23,9 +23,12 @@ namespace HDF5Reader
                 if(obj is string) {
                     return (string)obj;
                 }
-                throw new ArgumentException("The requested field is not a string.", "fieldname");
+                throw new ArgumentException("The requested field ("+fieldname+") is not a string.", "fieldname");
             }
-            throw new ArgumentException("The requested field does not exist.", "fieldname");
+            Console.WriteLine("DUMP OBJ: " + obj);
+            foreach (var k in _data.Keys)
+                Console.WriteLine("DUMP KEY: '" + k+"'");
+            throw new ArgumentException("The requested field ("+fieldname+") does not exist.", "fieldname");
         }
     }
 }
