@@ -11,6 +11,7 @@ namespace HDF5Reader
     {
         private string _datasetname;
         private H5DataSetId _dataset_id;
+        private List<Row> _rows;
 
         public readonly Encoding Encoding = new ASCIIEncoding();
 
@@ -18,6 +19,8 @@ namespace HDF5Reader
         {
             _datasetname = datasetname;
             _dataset_id = H5D.open(container.Id, datasetname);
+
+            _rows = new List<Row>();
 
             LoadData();
         }
@@ -36,6 +39,19 @@ namespace HDF5Reader
         {
             var num_rows_data = H5S.getSimpleExtentDims(H5D.getSpace(Id));
             return num_rows_data[0];
+        }
+
+        protected void AddRow(Row r)
+        {
+            _rows.Add(r);
+        }
+
+        public Row this[int i]
+        {
+            get
+            {
+                return _rows[i];
+            }
         }
 
         public void Dispose() {

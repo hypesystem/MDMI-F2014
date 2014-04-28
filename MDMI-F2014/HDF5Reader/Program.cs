@@ -15,12 +15,24 @@ namespace HDF5Reader
         {
             var file = new File(file_path);
             var metadata = file.GetGroup("metadata");
-            var songs_data = metadata.GetDataset("songs");
 
-            var row = songs_data[0];
+            using(var songs_data = metadata.GetCompoundDataset("songs"))
+            {
+                var row = songs_data[0];
 
-            Console.WriteLine("Artist Name: " + row.GetString("artist_name"));
-            Console.ReadKey();
+                Console.WriteLine("Artist Name: " + row.GetString("artist_name"));
+                Console.ReadKey();
+            }
+
+            using (var artist_terms_data = metadata.GetScalarDataset("artist_terms"))
+            {
+                Console.WriteLine("Terms:");
+                foreach (var row in artist_terms_data)
+                {
+                    Console.WriteLine(row.GetString("data"));
+                }
+                Console.ReadKey();
+            }
 
             //SongReader.ReadSongFile(file_path);
 

@@ -7,7 +7,6 @@ namespace HDF5Reader
 {
     class CompoundDataset : Dataset
     {
-        private List<Row> _rows;
         private Attribute[] _attributes;
         private byte[] _row_data;
 
@@ -15,8 +14,6 @@ namespace HDF5Reader
 
         protected override void LoadData()
         {
-            _rows = new List<Row>();
-
             FindAllAttributes();
             LoadAllRows();
         }
@@ -113,14 +110,7 @@ namespace HDF5Reader
 
             Console.WriteLine("Row loaded...");
 
-            _rows.Add(new Row(row_data));
-        }
-
-        public Row this[int i] {
-            get
-            {
-                return _rows[i];
-            }
+            AddRow(new Row(row_data));
         }
     }
 }

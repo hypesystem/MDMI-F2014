@@ -18,10 +18,14 @@ namespace HDF5Reader
             return new Group(this, groupname);
         }
 
-        public CompoundDataset GetDataset(string datasetname)
+        public CompoundDataset GetCompoundDataset(string datasetname)
         {
-            //TODO: Decide if it is a compound or scalar dataset, make the correct one.
             return new CompoundDataset(this, datasetname);
+        }
+
+        public ScalarDataset GetScalarDataset(string datasetname)
+        {
+            return new ScalarDataset(this, datasetname);
         }
     }
 }
