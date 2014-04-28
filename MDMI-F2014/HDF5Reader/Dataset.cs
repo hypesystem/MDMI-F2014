@@ -7,7 +7,7 @@ using HDF5DotNet;
 
 namespace HDF5Reader
 {
-    abstract class Dataset
+    abstract class Dataset : IDisposable
     {
         private string _datasetname;
         private H5DataSetId _dataset_id;
@@ -36,6 +36,10 @@ namespace HDF5Reader
         {
             var num_rows_data = H5S.getSimpleExtentDims(H5D.getSpace(Id));
             return num_rows_data[0];
+        }
+
+        public void Dispose() {
+            H5D.close(_dataset_id);
         }
     }
 }
