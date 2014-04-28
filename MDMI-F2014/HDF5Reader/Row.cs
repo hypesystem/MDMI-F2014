@@ -25,10 +25,35 @@ namespace HDF5Reader
                 }
                 throw new ArgumentException("The requested field ("+fieldname+") is not a string.", "fieldname");
             }
-            Console.WriteLine("DUMP OBJ: " + obj);
-            foreach (var k in _data.Keys)
-                Console.WriteLine("DUMP KEY: '" + k+"'");
             throw new ArgumentException("The requested field ("+fieldname+") does not exist.", "fieldname");
+        }
+
+        public double GetDouble(string fieldname)
+        {
+            object obj;
+            if (_data.TryGetValue(fieldname, out obj))
+            {
+                if (obj is double)
+                {
+                    return (double)obj;
+                }
+                throw new ArgumentException("The requested field (" + fieldname + ") is not a floating point number.", "fieldname");
+            }
+            throw new ArgumentException("The requested field (" + fieldname + ") does not exist.", "fieldname");
+        }
+
+        public int GetInteger(string fieldname)
+        {
+            object obj;
+            if (_data.TryGetValue(fieldname, out obj))
+            {
+                if (obj is int)
+                {
+                    return (int)obj;
+                }
+                throw new ArgumentException("The requested field (" + fieldname + ") is not an integer.", "fieldname");
+            }
+            throw new ArgumentException("The requested field (" + fieldname + ") does not exist.", "fieldname");
         }
     }
 }
