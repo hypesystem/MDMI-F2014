@@ -14,39 +14,44 @@ namespace HDF5Reader
 
         protected override void LoadData()
         {
+            //Load data
             var dtype = H5D.getType(Id);
             var size = H5T.getSize(dtype);
 
             var space = H5D.getSpace(Id);
-            var new_size = H5S.getSimpleExtentDims(space);
 
-            foreach (var dim in new_size)
-            {
-                Console.WriteLine("Dim: " + dim);
-            }
-            Console.WriteLine("Size: " + size);
-
-            byte[,] _row_data = new byte[new_size[0],size];
+            byte[,] _row_data = new byte[FindNumberOfRows(),size];
             H5D.read(Id, dtype, new H5Array<byte>(_row_data));
 
-            Console.WriteLine("Row Data: " + _row_data.GetLongLength(0) + "," + _row_data.GetLongLength(1));
+            //Find data type+size
+            var member_type = H5T.getClass(dtype).ToString();
+            var member_size = H5T.getSize(dtype);
 
-            var _row = new byte[size];
-            for (int i = 0; i < size; i++ )
+            //Setup parser
+            Attribute parser = null;
+
+            switch (member_type)
             {
-                _row[i] = _row_data[0, i];
+                case "STRING":
+                    parser = new StringAttribute("data", member_size);
+                    break;
+                case "INTEGER":
+                    parser = new IntegerAttribute("data", member_size);
+                    break;
+                case "FLOAT":
+                    parser = new FloatingPointAttribute("data", member_size);
+                    break;
+                default:
+                    throw new ArgumentException("Unsupported member type " + member_type, "member_type");
             }
 
-            var _row2 = new byte[size];
-            for (int i = 0; i < size; i++)
+            //Parse rows
+            for (int i = 0; i < FindNumberOfRows(); i++)
             {
-                _row2[i] = _row_data[1, i];
+                var dat = new Dictionary<string, object>();
+                dat[parser.Name] = parser.Parse(_row_data.Row(i));
+                AddRow(new Row(dat));
             }
-
-            Console.WriteLine(Encoding.GetString(_row));
-            Console.WriteLine(Encoding.GetString(_row2));
-
-            throw new NotImplementedException();
         }
 
         public IEnumerator<Row> GetEnumerator()

@@ -8,7 +8,7 @@ namespace HDF5Reader
     class CompoundDataset : Dataset
     {
         private Attribute[] _attributes;
-        private byte[] _row_data;
+        private byte[,] _row_data;
 
         public CompoundDataset(Container container, string datasetname) : base(container, datasetname) { }
 
@@ -86,7 +86,7 @@ namespace HDF5Reader
             var dtype = H5D.getType(Id);
             var size = H5T.getSize(dtype);
 
-            _row_data = new byte[size];
+            _row_data = new byte[FindNumberOfRows(),size];
             H5D.read(Id, dtype, new H5Array<byte>(_row_data));
             
             //TODO: Does this work with more than one row? Dunno. Probs not.
@@ -104,7 +104,7 @@ namespace HDF5Reader
 
             foreach (var attr in _attributes)
             {
-                row_data[attr.Name] = attr.Parse(_row_data.Skip(ptr).Take(attr.Length).ToArray());
+                row_data[attr.Name] = attr.Parse(_row_data.Row(0).Skip(ptr).Take(attr.Length).ToArray());
                 ptr += attr.Length;
             }
 
