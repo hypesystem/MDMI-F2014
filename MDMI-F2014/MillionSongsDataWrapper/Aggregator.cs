@@ -4,9 +4,9 @@ using MathNet.Numerics.Statistics;
 
 namespace MillionSongsDataWrapper
 {
-    static class Aggregator
+    public static class Aggregator
     {
-        static SegmentStats AggregateSegments(IEnumerable<Segment> segments)
+        public static SegmentStats AggregateSegments(IEnumerable<Segment> segments)
         {
             var enumerable = segments as Segment[] ?? segments.ToArray();
             var confidenceMean = enumerable.Average(s => s.Confidence);
@@ -21,7 +21,7 @@ namespace MillionSongsDataWrapper
             return result;
         }
 
-        static SectionStats AggregateSections(IEnumerable<Section> sections)
+        public static SectionStats AggregateSections(IEnumerable<Section> sections)
         {
             var enumerable = sections as Section[] ?? sections.ToArray();
             var confidenceMean = enumerable.Average(s => s.Confidence);
@@ -33,11 +33,10 @@ namespace MillionSongsDataWrapper
         private static Aggregates[] Aggregate(IEnumerable<double[]> doubles)
         {
             var enumerable = doubles as double[][] ?? doubles.ToArray();
-            var result = new Aggregates[enumerable.Count()];
+            var result = new Aggregates[enumerable.Length];
             for (var i = 0; i < result.Count(); i++)
             {
-                var i1 = i;
-                result[i] = Aggregate(enumerable.Select(d => d[i1]));
+                result[i] = Aggregate(enumerable[i]);
             }
             return result;
         }
