@@ -69,7 +69,7 @@ namespace HDF5Reader
                 {
                     var dat = new Dictionary<string, object>();
                     for (int j = 0; j < dims[1]; j++)
-                        dat[""+i] = parser.Parse(_row_data.Field(i, j));
+                        dat[""+j] = parser.Parse(_row_data.Field(i, j));
                     AddRow(new Row(dat));
                 }
             }

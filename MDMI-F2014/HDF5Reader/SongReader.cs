@@ -39,9 +39,8 @@ namespace HDF5Reader
             _builder.TrackName = song.GetString("title");
             _builder.Familiarity = song.GetDouble("artist_familiarity");
             _builder.Hotttnesss = song.GetDouble("song_hotttnesss");
-
-            //throw new NotImplementedException();
-            //Missing some info!
+            _builder.ArtistLongtitude = song.GetDouble("artist_longitude");
+            _builder.ArtistLatitude = song.GetDouble("artist_latitude");
         }
 
         void ReadAnalysisData()
@@ -66,9 +65,6 @@ namespace HDF5Reader
             var segments_start = analysis.GetScalarDataset("segments_start");
             var segments_pitches = analysis.GetScalarDataset("segments_pitches");
             var segments_timbre = analysis.GetScalarDataset("segments_timbre");
-
-            //throw new NotImplementedException();
-            //Missing timbre and pitches!
 
             var num_segments = segments_confidence.Count();
             Console.WriteLine("Segments: " + num_segments);
