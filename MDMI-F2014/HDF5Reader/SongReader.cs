@@ -64,6 +64,7 @@ namespace HDF5Reader
             var segments_loudness_max_time = analysis.GetScalarDataset("segments_loudness_max_time");
             var segments_loudness_max = analysis.GetScalarDataset("segments_loudness_max");
             var segments_start = analysis.GetScalarDataset("segments_start");
+            var segments_pitches = analysis.GetScalarDataset("segments_pitches");
             var segments_timbre = analysis.GetScalarDataset("segments_timbre");
 
             //throw new NotImplementedException();
@@ -75,22 +76,27 @@ namespace HDF5Reader
             for (int i = 0; i < num_segments; i++)
             {
                 var duration = i < (num_segments - 1) ?
-                    segments_start[i + 1].GetDouble("data") - segments_start[i].GetDouble("data") :
-                    _builder.Duration - segments_start[i].GetDouble("data");
+                    segments_start[i + 1].GetDouble("0") - segments_start[i].GetDouble("0") :
+                    _builder.Duration - segments_start[i].GetDouble("0");
 
+                var pitch_row = segments_pitches[i];
                 var pitches = new double[12];
+                for (int j = 0; j < 12; j++)
+                    pitches[j] = pitch_row.GetDouble("" + j);
+
+                var timbre_row = segments_timbre[i];
                 var timbre = new double[12];
-                //throw new NotImplementedException();
-                //Support timbre and pitches!
+                for (int j = 0; j < 12; j++)
+                    timbre[j] = timbre_row.GetDouble("" + j);
 
                 segments[i] = new Segment(
-                    segments_loudness_start[i].GetDouble("data"),
-                    segments_loudness_max_time[i].GetDouble("data"),
-                    segments_loudness_max[i].GetDouble("data"),
+                    segments_loudness_start[i].GetDouble("0"),
+                    segments_loudness_max_time[i].GetDouble("0"),
+                    segments_loudness_max[i].GetDouble("0"),
                     duration,
                     pitches,
                     timbre,
-                    segments_confidence[i].GetDouble("data")
+                    segments_confidence[i].GetDouble("0")
                 );
             }
             _builder.SegmentStats = Aggregator.AggregateSegments(segments);
@@ -104,11 +110,11 @@ namespace HDF5Reader
             var sections = new Section[num_sections];
             for(int i = 0; i < num_sections; i++) {
                 var duration = i < (num_sections - 1) ?
-                    sections_start[i + 1].GetDouble("data") - sections_start[i].GetDouble("data") :
-                    _builder.Duration - sections_start[i].GetDouble("data");
+                    sections_start[i + 1].GetDouble("0") - sections_start[i].GetDouble("0") :
+                    _builder.Duration - sections_start[i].GetDouble("0");
 
                 sections[i] = new Section(
-                    sections_confidence[i].GetDouble("data"),
+                    sections_confidence[i].GetDouble("0"),
                     duration
                 );
             }
