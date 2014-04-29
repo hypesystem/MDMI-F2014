@@ -8,7 +8,7 @@ namespace HDF5Reader
 {
     public static class ByteMultiArrayExtension
     {
-        public static byte[] Row(this byte[,] arr, int row)
+        public static byte[] Field(this byte[,] arr, int row)
         {
             var result = new byte[arr.GetLongLength(1)];
             for (int i = 0; i < result.Length; i++)
@@ -18,12 +18,12 @@ namespace HDF5Reader
             return result;
         }
 
-        public static byte[] Column(this byte[,] arr, int col)
+        public static byte[] Field(this byte[,,] arr, int row, int col)
         {
-            var result = new byte[arr.GetLongLength(0)];
-            for (int i = 0; i < result.Length; i++)
+            var result = new byte[arr.GetLongLength(2)];
+            for (int i = 0; i < arr.GetLongLength(2); i++)
             {
-                result[i] = arr[i, col];
+                    result[i] = arr[row, col, i];
             }
             return result;
         }
