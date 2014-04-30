@@ -23,6 +23,8 @@ namespace UltimateConverter9000
 
             var stopwatch = new Stopwatch();
 
+            var writer = new LRNWriter.LRNWriter("data.lrn", trav.Files.Count());
+
             int i = 0;
             stopwatch.Start();
             var files_to_write = new List<Song>();
@@ -36,8 +38,8 @@ namespace UltimateConverter9000
                     Console.ReadKey();
 
                     stopwatch.Start();
-                    var writer = new LRNWriter.LRNWriter(files_to_write);
-                    writer.WriteLRNToFile("" + (i / 10) + ".lrn");
+                    writer.AddFilesToWrite(files_to_write);
+                    writer.WriteSongsToFile();
                     files_to_write = new List<Song>();
                     //Consider force garbage collect
                     stopwatch.Stop();
