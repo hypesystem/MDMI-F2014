@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7E9961A1-A527-4641-B062-C20A36062F1B}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{021C7639-A2ED-4004-91FC-3EC0B6EFC4C6}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LRNWriter</RootNamespace>
-    <AssemblyName>LRNWriter</AssemblyName>
+    <RootNamespace>HDF5Reader</RootNamespace>
+    <AssemblyName>HDF5Reader</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HDF5DotNet, Version=1.8.9.0, Culture=neutral, PublicKeyToken=a4952c8df86d6e8c, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\hdf5.net\HDF5DotNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,12 +45,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LRNWriter.cs" />
+    <Compile Include="ByteMultiArrayExtension.cs" />
+    <Compile Include="Container.cs" />
+    <Compile Include="CompoundDataset.cs" />
+    <Compile Include="Dataset.cs" />
+    <Compile Include="File.cs" />
+    <Compile Include="FloatingPointAttribute.cs" />
+    <Compile Include="Group.cs" />
+    <Compile Include="Attribute.cs" />
+    <Compile Include="IntegerAttribute.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Row.cs" />
+    <Compile Include="ScalarDataset.cs" />
+    <Compile Include="SongBuilder.cs" />
+    <Compile Include="SongReader.cs" />
+    <Compile Include="StringAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MillionSongsDataWrapper\MillionSongsDataWrapper.csproj">
-      <Project>{24796E43-88EA-48F0-AFC1-1BB2ECDBC97D}</Project>
+      <Project>{24796e43-88ea-48f0-afc1-1bb2ecdbc97d}</Project>
       <Name>MillionSongsDataWrapper</Name>
     </ProjectReference>
   </ItemGroup>

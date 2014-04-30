@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7E9961A1-A527-4641-B062-C20A36062F1B}</ProjectGuid>
+    <ProjectGuid>{BF5036C2-33C8-473B-8D69-7C1348814736}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LRNWriter</RootNamespace>
-    <AssemblyName>LRNWriter</AssemblyName>
+    <RootNamespace>ESOMDataWrapper</RootNamespace>
+    <AssemblyName>ESOMDataWrapper</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,14 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LRNWriter.cs" />
+    <Compile Include="ESOM.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MillionSongsDataWrapper\MillionSongsDataWrapper.csproj">
-      <Project>{24796E43-88EA-48F0-AFC1-1BB2ECDBC97D}</Project>
-      <Name>MillionSongsDataWrapper</Name>
-    </ProjectReference>
+    <Compile Include="UMatrix.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

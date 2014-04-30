@@ -3,7 +3,7 @@
     /*
      * Class representing one segment of a song, as documented by the echo nest framework. 
      */
-    class Segment
+    public class Segment
     {
 
         public readonly double Confidence;

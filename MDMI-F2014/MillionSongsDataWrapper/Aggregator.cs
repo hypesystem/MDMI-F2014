@@ -4,48 +4,51 @@ using MathNet.Numerics.Statistics;
 
 namespace MillionSongsDataWrapper
 {
-    static class Aggregator
+    public static class Aggregator
     {
-        static SegmentStats AggregateSegments(IEnumerable<Segment> segments)
+        public static SegmentStats AggregateSegments(IEnumerable<Segment> segments)
         {
-            var confidenceMean = segments.Average(s => s.Confidence);
-            var loudnessStart = Aggregate(segments.Select(s => s.LoudnessStart));
-            var loudnessmax = Aggregate(segments.Select(s => s.LoudnessMax));
-            var loudnessMaxTime = Aggregate(segments.Select(s => s.LoudnessMaxTime));
-            var duration = Aggregate(segments.Select(s => s.Duration));
-            var pitch = Aggregate(segments.Select(s => s.Pitches));
-            var timbre = Aggregate(segments.Select(s => s.Timbre));
+            var enumerable = segments as Segment[] ?? segments.ToArray();
+            var confidenceMean = enumerable.Average(s => s.Confidence);
+            var loudnessStart = Aggregate(enumerable.Select(s => s.LoudnessStart));
+            var loudnessmax = Aggregate(enumerable.Select(s => s.LoudnessMax));
+            var loudnessMaxTime = Aggregate(enumerable.Select(s => s.LoudnessMaxTime));
+            var duration = Aggregate(enumerable.Select(s => s.Duration));
+            var pitch = Aggregate(enumerable.Select(s => s.Pitches));
+            var timbre = Aggregate(enumerable.Select(s => s.Timbre));
             var result = new SegmentStats(confidenceMean, loudnessStart, loudnessMaxTime, loudnessmax, duration, pitch,
                 timbre);
             return result;
         }
 
-        static SectionStats AggregateSections(IEnumerable<Section> sections)
+        public static SectionStats AggregateSections(IEnumerable<Section> sections)
         {
-            var confidenceMean = sections.Average(s => s.Confidence);
-            var duration = Aggregate(sections.Select(s => s.Duration));
-            var result = new SectionStats(confidenceMean, duration,sections.Count());
+            var enumerable = sections as Section[] ?? sections.ToArray();
+            var confidenceMean = enumerable.Average(s => s.Confidence);
+            var duration = Aggregate(enumerable.Select(s => s.Duration));
+            var result = new SectionStats(confidenceMean, duration,enumerable.Count());
             return result;
         }
 
         private static Aggregates[] Aggregate(IEnumerable<double[]> doubles)
         {
-            var result = new Aggregates[doubles.Count()];
+            var enumerable = doubles as double[][] ?? doubles.ToArray();
+            var result = new Aggregates[enumerable.Length];
             for (var i = 0; i < result.Count(); i++)
             {
-                var i1 = i;
-                result[i] = Aggregate(doubles.Select(d => d[i1]));
+                result[i] = Aggregate(enumerable[i]);
             }
             return result;
         }
 
         private static Aggregates Aggregate(IEnumerable<double> doubles)
         {
-            var stats = new DescriptiveStatistics(doubles);
+            var enumerable = doubles as double[] ?? doubles.ToArray();
+            var stats = new DescriptiveStatistics(enumerable);
             var min = stats.Minimum;
             var max = stats.Maximum;
             var mean = stats.Mean;
-            var median = doubles.Median();
+            var median = enumerable.Median();
             var variance = stats.Variance;
             var skewness = stats.Skewness;
             var kurtosis = stats.Kurtosis;

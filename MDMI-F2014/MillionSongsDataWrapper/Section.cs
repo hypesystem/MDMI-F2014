@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MillionSongsDataWrapper
 {
-    class Section
+    public class Section
     {
         public readonly double Confidence;
         public readonly double Duration;

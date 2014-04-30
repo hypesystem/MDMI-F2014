@@ -3,12 +3,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C7F3AF20-1DD6-40AF-BE19-BEDA8C0A807D}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{00307A3E-6108-423F-98BB-39D3223C1AF3}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LRNWriterTest</RootNamespace>
-    <AssemblyName>LRNWriterTest</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <RootNamespace>ESOMDataWrapperTest</RootNamespace>
+    <AssemblyName>ESOMDataWrapperTest</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -34,9 +34,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>LRNWriterTest.TestLRNWriter</StartupObject>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
@@ -53,17 +50,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="TestLRNWriter.cs" />
+    <Compile Include="ESOMTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LRNWriter\LRNWriter.csproj">
-      <Project>{7E9961A1-A527-4641-B062-C20A36062F1B}</Project>
-      <Name>LRNWriter</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MillionSongsDataWrapper\MillionSongsDataWrapper.csproj">
-      <Project>{24796E43-88EA-48F0-AFC1-1BB2ECDBC97D}</Project>
-      <Name>MillionSongsDataWrapper</Name>
+    <ProjectReference Include="..\ESOMDataWrapper\ESOMDataWrapper.csproj">
+      <Project>{bf5036c2-33c8-473b-8d69-7c1348814736}</Project>
+      <Name>ESOMDataWrapper</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
