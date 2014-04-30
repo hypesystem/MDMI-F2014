@@ -48,6 +48,7 @@ namespace HDF5Reader
         public void Dispose()
         {
             H5F.close(_file_id);
+            H5.Close();
         }
     }
 }
