@@ -14,20 +14,23 @@ namespace HDF5Reader
 
         protected override void LoadData()
         {
-            //Load data
+            //Determine type and size of data
             var dtype = H5D.getType(Id);
             var size = H5T.getSize(dtype);
 
-            byte[,] _row_data = new byte[FindNumberOfRows(),size];
-            H5D.read(Id, dtype, new H5Array<byte>(_row_data));
+            var space = H5D.getSpace(Id);
+            var dims = H5S.getSimpleExtentDims(space);
 
-            //Find data type+size
+            var num_dimensions = dims.Length;
+
+            if (num_dimensions != 1 && num_dimensions != 2)
+                throw new ArgumentException("Scalar dataset has more than 2 dimensions! Cannot be handled.", "datasetname");
+
             var member_type = H5T.getClass(dtype).ToString();
             var member_size = size;
 
             //Setup parser
             Attribute parser = null;
-
             switch (member_type)
             {
                 case "STRING":
@@ -43,12 +46,32 @@ namespace HDF5Reader
                     throw new ArgumentException("Unsupported member type " + member_type, "member_type");
             }
 
-            //Parse rows
-            for (int i = 0; i < FindNumberOfRows(); i++)
+            if (num_dimensions == 1)
             {
-                var dat = new Dictionary<string, object>();
-                dat[parser.Name] = parser.Parse(_row_data.Row(i));
-                AddRow(new Row(dat));
+                var _row_data = new byte[dims[0], size];
+                H5D.read(Id, dtype, new H5Array<byte>(_row_data));
+
+                //Parse rows
+                for (int i = 0; i < dims[0]; i++)
+                {
+                    var dat = new Dictionary<string, object>();
+                    dat["0"] = parser.Parse(_row_data.Field(i));
+                    AddRow(new Row(dat));
+                }
+            }
+            else if (num_dimensions == 2)
+            {
+                var _row_data = new byte[dims[0], dims[1], size];
+                H5D.read(Id, dtype, new H5Array<byte>(_row_data));
+
+                //Parse rows
+                for (int i = 0; i < dims[0]; i++)
+                {
+                    var dat = new Dictionary<string, object>();
+                    for (int j = 0; j < dims[1]; j++)
+                        dat[""+j] = parser.Parse(_row_data.Field(i, j));
+                    AddRow(new Row(dat));
+                }
             }
         }
 

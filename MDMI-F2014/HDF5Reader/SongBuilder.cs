@@ -12,7 +12,7 @@ namespace HDF5Reader
         public string ArtistName, TrackName;
         public double Familiarity, Hotttnesss;
 
-        public double Danceability, Duration, Energy, Tempo/*, ArtistLongtitude, ArtistLatitude*/;
+        public double Danceability, Duration, Energy, Tempo, ArtistLongtitude, ArtistLatitude;
         //public Key Key;
         //public TimeSignature TimeSignature;
 

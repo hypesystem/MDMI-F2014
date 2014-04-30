@@ -104,7 +104,7 @@ namespace HDF5Reader
 
             foreach (var attr in _attributes)
             {
-                row_data[attr.Name] = attr.Parse(_row_data.Row(0).Skip(ptr).Take(attr.Length).ToArray());
+                row_data[attr.Name] = attr.Parse(_row_data.Field(0).Skip(ptr).Take(attr.Length).ToArray());
                 ptr += attr.Length;
             }
 
