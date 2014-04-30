@@ -48,10 +48,8 @@ namespace MillionSongsDataWrapper
             if (t.Compare(10, 1)) return Key.BflatMaj;
             if (t.Compare(11, 0)) return Key.Bmin;
             if (t.Compare(11, 1)) return Key.Bmaj;
-            else
-            {
-                throw new ArgumentException("key-mode combination not recognized");
-            }
+            throw new ArgumentException("key-mode ");
+            
         }
     }
 }
