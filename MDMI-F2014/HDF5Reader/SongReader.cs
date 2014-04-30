@@ -55,7 +55,7 @@ namespace HDF5Reader
             _builder.Tempo = song.GetDouble("tempo");
             //Key:
             //TimeSignature:
-            //throw new NotImplementedException();
+            throw new NotImplementedException();
 
             //Segments
             var segments_confidence = analysis.GetScalarDataset("segments_confidence");
@@ -67,7 +67,6 @@ namespace HDF5Reader
             var segments_timbre = analysis.GetScalarDataset("segments_timbre");
 
             var num_segments = segments_confidence.Count();
-            Console.WriteLine("Segments: " + num_segments);
             var segments = new Segment[num_segments];
             for (int i = 0; i < num_segments; i++)
             {
@@ -102,7 +101,6 @@ namespace HDF5Reader
             var sections_start = analysis.GetScalarDataset("sections_start");
 
             var num_sections = sections_confidence.Count();
-            Console.WriteLine("Sections: "+num_sections);
             var sections = new Section[num_sections];
             for(int i = 0; i < num_sections; i++) {
                 var duration = i < (num_sections - 1) ?
