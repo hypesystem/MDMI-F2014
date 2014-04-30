@@ -6,11 +6,10 @@ using MillionSongsDataWrapper;
 
 namespace LRNWriterTest
 {
-    [TestClass]
     public class TestLRNWriter
     {
-        [TestMethod]
-        public void TestLRNWriterFormat()
+
+        static void Main(string[] args)
         {
             Aggregates[] arr = new Aggregates[12];
             for (int i = 0; i < arr.Length; i++)
