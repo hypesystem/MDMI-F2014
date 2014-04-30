@@ -99,8 +99,10 @@ namespace LRNWriter
             var map = song.GetESOMAttributeMap();
             foreach (var key in map.Keys)
             {
-                String plusRow = map[key] + "" + TABCHAR; 
-                row.Append(plusRow);
+                string plusRow = "";
+                if (map[key] == null) plusRow += "NaN";
+                else plusRow += map[key];
+                row.Append(plusRow + TABCHAR);
             }
             return row.ToString();
         }
