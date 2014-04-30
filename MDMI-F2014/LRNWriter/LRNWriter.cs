@@ -16,38 +16,58 @@ namespace LRNWriter
     {
         private static readonly char TABCHAR = '\t';
         private static readonly char METACHAR = '%';
-        private int _columnCount;
-        private StringBuilder columnNameBuilder, columnTypeBuilder;
+        private int _columnCount, _currentID, _totalFiles;
+        private readonly StringBuilder columnNameBuilder;
+        private readonly StringBuilder columnTypeBuilder;
         private SegmentStats _exampleSegmentStat;
         private Aggregates _exampleAggregate;
         private Song _exampleSong;
-        private readonly List<Song> writeList;
+        private readonly List<Song> _writeList;
         private char _columnPrefix;
-        private int _currentID;
+        private String _filePath;
+        private Boolean _firstWrite;
 
-        public LRNWriter(List<Song> writeList)
+        public LRNWriter(String filePath, int totalFiles)
         {
             _currentID = 0;
             _columnCount = 0;
             _columnPrefix = '0';
             columnNameBuilder = new StringBuilder();
             columnTypeBuilder = new StringBuilder();
-            this.writeList = writeList;
+            _writeList = new List<Song>();
+            _totalFiles = totalFiles;
+            _filePath = filePath;
+            _firstWrite = true;
         }
 
-        public void WriteLRNToFile(String filePath)
+        public void AddFilesToWrite(List<Song> filesToWrite)
         {
-            _exampleSong = writeList.First();
-            _exampleSegmentStat = _exampleSong.SegmentStats;
-            _exampleAggregate = _exampleSegmentStat.LoudnessMax;
-
-            using (var writer = new StreamWriter(filePath))
+           _writeList.AddRange(filesToWrite);
+            if (_firstWrite)
             {
-                String cmt = @"#LRN parsing 1" + "\n";
-                writer.Write(cmt);
+                _exampleSong = _writeList.First();
+                _exampleSegmentStat = _exampleSong.SegmentStats;
+                _exampleAggregate = _exampleSegmentStat.LoudnessMax;
+            }
+        }
+
+
+        public void WriteSongsToFile()
+        {
+            if (_writeList.Count == 0) throw new ArgumentException("Add songs to file before writing");
+
+           
+            using (var writer = _firstWrite ? new StreamWriter(_filePath, false) : new StreamWriter(_filePath, true))
+            {
+                // String cmt = @"#LRN parsing 1" + "\n";
+                // writer.Write(cmt);
+                if (_firstWrite)
+                {
+                    WriteMetaData(writer);
+                    _firstWrite = false;
+                }
                 
-                WriteMetaData(writer);
-                foreach (var song in writeList)
+                foreach (var song in _writeList)
                 {
                     writer.WriteLine(GenerateRowLine(song));
                 }
@@ -56,6 +76,7 @@ namespace LRNWriter
 
             }
 
+            _writeList.Clear();
            
         }
         
@@ -95,7 +116,7 @@ namespace LRNWriter
         private void WriteMetaData(StreamWriter writer)
         {
             GenerateColumns();
-            writer.WriteLine(METACHAR + " " + writeList.Count);
+            writer.WriteLine(METACHAR + " " + _totalFiles);
             writer.WriteLine(METACHAR + " " + _columnCount);
             writer.WriteLine(METACHAR + " " + columnTypeBuilder);
             writer.WriteLine(METACHAR + " " + columnNameBuilder);
