@@ -82,7 +82,7 @@ namespace HDF5Reader
                 var timbre = new double[12];
                 for (int j = 0; j < 12; j++)
                     timbre[j] = timbre_row.GetDouble("" + j);
-
+                
                 segments[i] = new Segment(
                     segments_loudness_start[i].GetDouble("0"),
                     segments_loudness_max_time[i].GetDouble("0"),

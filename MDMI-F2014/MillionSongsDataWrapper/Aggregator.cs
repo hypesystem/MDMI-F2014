@@ -32,12 +32,20 @@ namespace MillionSongsDataWrapper
 
         private static Aggregates[] Aggregate(IEnumerable<double[]> doubles)
         {
-            var enumerable = doubles as double[][] ?? doubles.ToArray();
-            var result = new Aggregates[enumerable.Length];
-            for (var i = 0; i < result.Count(); i++)
+            var segments = doubles.ToArray();
+            var num_cols = segments[0].Length;
+            var result = new Aggregates[num_cols];
+
+            for (int j = 0; j < num_cols; j++)
             {
-                result[i] = Aggregate(enumerable[i]);
+                var col = new double[segments.Length];
+                for (int i = 0; i < segments.Length; i++)
+                {
+                    col[i] = segments[i][j];
+                }
+                result[j] = Aggregate(col);
             }
+
             return result;
         }
 
