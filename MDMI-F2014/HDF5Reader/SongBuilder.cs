@@ -21,7 +21,22 @@ namespace HDF5Reader
 
         public Song Build()
         {
-            throw new NotImplementedException();
+            return new Song(
+                artistName: ArtistName,
+                trackName: TrackName,
+                familiarity: Familiarity,
+                hotttnesss: Hotttnesss,
+                danceability: Danceability,
+                duration: Duration,
+                energy: Energy,
+                tempo: Tempo,
+                artistLongtitude: ArtistLongtitude,
+                artistLatitude: ArtistLatitude,
+                key: Key,
+                timeSignature: TimeSignature,
+                segmentStats: SegmentStats,
+                sectionsStats: SectionsStats
+            );
         }
     }
 }
