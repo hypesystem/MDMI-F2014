@@ -14,12 +14,11 @@ namespace UltimateConverter9000
     {
         static string data_path = @"C:\Users\hypesystem\Downloads\millionsongsubset_full(1)\MillionSongSubset\data";
 
-        static int chunk_size = 10;
+        static int chunk_size = 100;
 
         static void Main(string[] args)
         {
             var trav = new FileTraverser(data_path);
-            Console.ReadKey();
 
             var stopwatch = new Stopwatch();
 
@@ -35,7 +34,6 @@ namespace UltimateConverter9000
                     stopwatch.Stop();
                     Console.WriteLine("Read " + chunk_size + " (total "+i+") files in "+stopwatch.Elapsed);
                     stopwatch.Reset();
-                    Console.ReadKey();
 
                     stopwatch.Start();
                     writer.AddFilesToWrite(files_to_write);
@@ -45,12 +43,18 @@ namespace UltimateConverter9000
                     stopwatch.Stop();
                     Console.WriteLine("Written " + chunk_size + " (total "+i+") files in "+stopwatch.Elapsed);
                     stopwatch.Reset();
-                    Console.ReadKey();
                     stopwatch.Start();
                 }
 
-                var song = SongReader.ReadSongFile(file);
-                files_to_write.Add(song);
+                try
+                {
+                    var song = SongReader.ReadSongFile(file);
+                    files_to_write.Add(song);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("An error occurred! Skipping file " + file);
+                }
                 
                 i++;
             }
