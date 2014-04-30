@@ -63,7 +63,7 @@ namespace LRNWriter
         {
 
             StringBuilder row = new StringBuilder();
-            row.Append(_currentID++ + TABCHAR);
+            row.Append(_currentID++ + "" + TABCHAR);
             // Write segmentstats
             foreach (var aggregate in song.SegmentStats.AggregatesList)
             {
@@ -71,14 +71,15 @@ namespace LRNWriter
             }
 
             // Write section stats
-            row.Append(song.SectionsStats.Count + TABCHAR);
+            row.Append(song.SectionsStats.Count + "" + TABCHAR);
             AppendAggregateValues(row, song.SectionsStats.Duration);
 
             // Write lone attributes
             var map = song.GetESOMAttributeMap();
             foreach (var key in map.Keys)
             {
-                row.Append(map[key] + TABCHAR);
+                String plusRow = map[key] + "" + TABCHAR; 
+                row.Append(plusRow);
             }
             return row.ToString();
         }
@@ -103,8 +104,8 @@ namespace LRNWriter
         private void GenerateColumns()
         {
            
-            columnTypeBuilder.Append(METACHAR +  " 9" + TABCHAR);
-            columnNameBuilder.Append(METACHAR +  " id" + TABCHAR);
+            columnTypeBuilder.Append("9" + TABCHAR);
+            columnNameBuilder.Append("id" + TABCHAR);
             _columnCount++;
 
             _columnCount++;
@@ -113,7 +114,7 @@ namespace LRNWriter
             foreach (var moreNames in _exampleSong.GetESOMAttributeMap().Keys)
             {
                 _columnCount++;
-                columnTypeBuilder.Append('1' + TABCHAR);
+                columnTypeBuilder.Append("1" + TABCHAR);
                 columnNameBuilder.Append(moreNames + TABCHAR);
 
             }
@@ -123,7 +124,7 @@ namespace LRNWriter
         private void WriteSectionStats()
         {
             columnNameBuilder.Append("Count" + TABCHAR);
-            columnTypeBuilder.Append('1' + TABCHAR);
+            columnTypeBuilder.Append("1" + TABCHAR);
             WriteAggregate(_columnPrefix++);
         }
 
