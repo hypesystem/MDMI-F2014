@@ -12,7 +12,7 @@ namespace UltimateConverter9000
 {
     class Program
     {
-        static string data_path = @"C:\Users\hypesystem\Downloads\millionsongsubset_full\MillionSongSubset\data";
+        static string data_path = @"C:\Users\hypesystem\Downloads\millionsongsubset_full(1)\MillionSongSubset\data";
 
         static int chunk_size = 10;
 
