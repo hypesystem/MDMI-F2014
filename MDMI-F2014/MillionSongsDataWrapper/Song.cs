@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MillionSongsDataWrapper
 {
@@ -6,6 +7,7 @@ namespace MillionSongsDataWrapper
     {
         public readonly string ArtistName;
         public readonly string TrackName;
+        public readonly string Genre;
         // ESOM Clustering attributes
        
         public readonly SegmentStats SegmentStats;
@@ -27,7 +29,7 @@ namespace MillionSongsDataWrapper
 
         public Song(string artistName, string trackName, SegmentStats segmentStats, SectionStats sectionsStats, 
             double familiarity, double hotttnesss, double artistLongtitude, double artistLatitude, 
-            double danceability, double duration, double energy, double tempo, Key key, TimeSignature timeSignature)
+            double danceability, double duration, double energy, double tempo, Key key, TimeSignature timeSignature, String genre = null)
         {
             ArtistName = artistName;
             TrackName = trackName;
@@ -43,6 +45,7 @@ namespace MillionSongsDataWrapper
             Tempo = tempo;
             Key = key;
             TimeSignature = timeSignature;
+            Genre = genre;
         }
 
         public SortedDictionary<string, double> GetESOMAttributeMap()
@@ -57,6 +60,14 @@ namespace MillionSongsDataWrapper
             map.Add("ArtistLatitude", ArtistLatitude);
 
             return map;
-        } 
+        }
+
+        public SortedDictionary<string, object> GetIgnoredAttributeMap()
+        {
+            var map = new SortedDictionary<string, object>();
+            map.Add("ArtistName", ArtistName);
+            map.Add("TrackName", TrackName);
+            map.Add("Genre", Genre);
+        }
     }
 }
