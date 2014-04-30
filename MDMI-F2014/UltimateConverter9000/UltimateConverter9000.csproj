@@ -53,6 +53,10 @@
       <Project>{021c7639-a2ed-4004-91fc-3ec0b6efc4c6}</Project>
       <Name>HDF5Reader</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LRNWriter\LRNWriter.csproj">
+      <Project>{7e9961a1-a527-4641-b062-c20a36062f1b}</Project>
+      <Name>LRNWriter</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MillionSongsDataWrapper\MillionSongsDataWrapper.csproj">
       <Project>{24796e43-88ea-48f0-afc1-1bb2ecdbc97d}</Project>
       <Name>MillionSongsDataWrapper</Name>
