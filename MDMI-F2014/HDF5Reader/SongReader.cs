@@ -53,9 +53,8 @@ namespace HDF5Reader
             _builder.Danceability = song.GetDouble("danceability");
             _builder.Energy = song.GetDouble("energy");
             _builder.Tempo = song.GetDouble("tempo");
-            //Key:
-            //TimeSignature:
-            throw new NotImplementedException();
+            _builder.Key = KeyExtensions.FromInt(song.GetInteger("key"), song.GetInteger("mode"));
+            _builder.TimeSignature = TimeSignatureExtension.FromInt(song.GetInteger("time_signature"));
 
             //Segments
             var segments_confidence = analysis.GetScalarDataset("segments_confidence");

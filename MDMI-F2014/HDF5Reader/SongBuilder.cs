@@ -13,8 +13,8 @@ namespace HDF5Reader
         public double Familiarity, Hotttnesss;
 
         public double Danceability, Duration, Energy, Tempo, ArtistLongtitude, ArtistLatitude;
-        //public Key Key;
-        //public TimeSignature TimeSignature;
+        public Key Key;
+        public TimeSignature TimeSignature;
 
         public SegmentStats SegmentStats;
         public SectionStats SectionsStats;
