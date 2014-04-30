@@ -51,8 +51,6 @@ namespace HDF5Reader
 
             var attr_class = H5T.getMemberClass(H5D.getType(Id), i).ToString();
             var attr_name = Encoding.GetString(buffer).Replace('\0', ' ').Trim();
-            
-            Console.WriteLine(attr_name + ": " + attr_class + " (" + attr_size + ")");
 
             switch (attr_class)
             {
@@ -96,8 +94,6 @@ namespace HDF5Reader
         {
             //TODO: Make work with several rows!
 
-            Console.WriteLine("Loading row...");
-
             int ptr = 0;
 
             var row_data = new Dictionary<string, object>();
@@ -107,8 +103,6 @@ namespace HDF5Reader
                 row_data[attr.Name] = attr.Parse(_row_data.Field(0).Skip(ptr).Take(attr.Length).ToArray());
                 ptr += attr.Length;
             }
-
-            Console.WriteLine("Row loaded...");
 
             AddRow(new Row(row_data));
         }
