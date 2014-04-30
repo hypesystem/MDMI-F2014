@@ -44,9 +44,6 @@ namespace UltimateConverter9000
                     writer.AddFilesToWrite(files_to_write);
                     writer.WriteSongsToFile();
                     files_to_write = new List<Song>();
-                    
-                    //Force garbage collect
-                    System.GC.Collect();
 
                     stopwatch.Stop();
                     Console.WriteLine("Written " + chunk_size + " (total "+i+") files in "+stopwatch.Elapsed);
