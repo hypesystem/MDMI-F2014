@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HDF5Reader", "HDF5Reader\HD
 		{24796E43-88EA-48F0-AFC1-1BB2ECDBC97D} = {24796E43-88EA-48F0-AFC1-1BB2ECDBC97D}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltimateConverter9000", "UltimateConverter9000\UltimateConverter9000.csproj", "{D8BC4D27-4BA3-405D-9E96-5D0B18E6C7BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{021C7639-A2ED-4004-91FC-3EC0B6EFC4C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{021C7639-A2ED-4004-91FC-3EC0B6EFC4C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{021C7639-A2ED-4004-91FC-3EC0B6EFC4C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8BC4D27-4BA3-405D-9E96-5D0B18E6C7BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8BC4D27-4BA3-405D-9E96-5D0B18E6C7BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8BC4D27-4BA3-405D-9E96-5D0B18E6C7BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8BC4D27-4BA3-405D-9E96-5D0B18E6C7BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
