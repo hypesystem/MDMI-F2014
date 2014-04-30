@@ -21,7 +21,7 @@ namespace MillionSongsDataWrapper
             return value.Item1.Equals(first) && value.Item2.Equals(second);
         }
 
-        public static Key FromInt(this Key k, int key, int mode)
+        public static Key FromInt(int key, int mode)
         {
             var t = new Tuple<int,int>(key, mode);
             if (t.Compare(0, 0)) return Key.Cmin;
@@ -49,7 +49,6 @@ namespace MillionSongsDataWrapper
             if (t.Compare(11, 0)) return Key.Bmin;
             if (t.Compare(11, 1)) return Key.Bmaj;
             throw new ArgumentException("key-mode ");
-            
         }
     }
 }
