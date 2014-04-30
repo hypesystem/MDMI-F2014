@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using HDF5Reader;
 using MillionSongsDataWrapper;
 using LRNWriter;
@@ -15,6 +17,9 @@ namespace UltimateConverter9000
         static string data_path = @"C:\Users\hypesystem\Downloads\millionsongsubset_full(1)\MillionSongSubset\data";
 
         static int chunk_size = 100;
+
+        static ConcurrentQueue<Song> song_queue = new ConcurrentQueue<Song>();
+        static bool all_files_read = false;
 
         static void Main(string[] args)
         {
@@ -39,7 +44,10 @@ namespace UltimateConverter9000
                     writer.AddFilesToWrite(files_to_write);
                     writer.WriteSongsToFile();
                     files_to_write = new List<Song>();
-                    //Consider force garbage collect
+                    
+                    //Force garbage collect
+                    System.GC.Collect();
+
                     stopwatch.Stop();
                     Console.WriteLine("Written " + chunk_size + " (total "+i+") files in "+stopwatch.Elapsed);
                     stopwatch.Reset();
