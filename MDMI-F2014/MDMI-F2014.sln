@@ -3,9 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillionSongsDataWrapper", "MillionSongsDataWrapper\MillionSongsDataWrapper.csproj", "{24796E43-88EA-48F0-AFC1-1BB2ECDBC97D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESOMDataWrapper", "ESOMDataWrapper\ESOMDataWrapper.csproj", "{BF5036C2-33C8-473B-8D69-7C1348814736}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESOMDataWrapperTest", "ESOMDataWrapperTest\ESOMDataWrapperTest.csproj", "{00307A3E-6108-423F-98BB-39D3223C1AF3}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LRNWriter", "LRNWriter\LRNWriter.csproj", "{7E9961A1-A527-4641-B062-C20A36062F1B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LRNWriterTest", "LRNWriterTest\LRNWriterTest.csproj", "{C7F3AF20-1DD6-40AF-BE19-BEDA8C0A807D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HDF5Reader", "HDF5Reader\HDF5Reader.csproj", "{021C7639-A2ED-4004-91FC-3EC0B6EFC4C6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{24796E43-88EA-48F0-AFC1-1BB2ECDBC97D} = {24796E43-88EA-48F0-AFC1-1BB2ECDBC97D}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +26,14 @@ Global
 		{24796E43-88EA-48F0-AFC1-1BB2ECDBC97D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24796E43-88EA-48F0-AFC1-1BB2ECDBC97D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24796E43-88EA-48F0-AFC1-1BB2ECDBC97D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF5036C2-33C8-473B-8D69-7C1348814736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF5036C2-33C8-473B-8D69-7C1348814736}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF5036C2-33C8-473B-8D69-7C1348814736}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF5036C2-33C8-473B-8D69-7C1348814736}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00307A3E-6108-423F-98BB-39D3223C1AF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00307A3E-6108-423F-98BB-39D3223C1AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00307A3E-6108-423F-98BB-39D3223C1AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00307A3E-6108-423F-98BB-39D3223C1AF3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7E9961A1-A527-4641-B062-C20A36062F1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7E9961A1-A527-4641-B062-C20A36062F1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E9961A1-A527-4641-B062-C20A36062F1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -25,6 +42,10 @@ Global
 		{C7F3AF20-1DD6-40AF-BE19-BEDA8C0A807D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7F3AF20-1DD6-40AF-BE19-BEDA8C0A807D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7F3AF20-1DD6-40AF-BE19-BEDA8C0A807D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{021C7639-A2ED-4004-91FC-3EC0B6EFC4C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{021C7639-A2ED-4004-91FC-3EC0B6EFC4C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{021C7639-A2ED-4004-91FC-3EC0B6EFC4C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{021C7639-A2ED-4004-91FC-3EC0B6EFC4C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
