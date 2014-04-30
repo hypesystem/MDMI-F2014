@@ -19,7 +19,7 @@ namespace UltimateConverter9000
             int i = 0;
             foreach (var file in trav.Files)
             {
-                if (i % 100 == 0 && i > 0)
+                if (i % 10 == 0 && i > 0)
                 {
                     Console.WriteLine("Read " + i + " files");
                     Console.ReadKey();
