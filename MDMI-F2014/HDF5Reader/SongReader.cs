@@ -46,6 +46,13 @@ namespace HDF5Reader
                     _builder.ArtistLongtitude = row.GetDouble("artist_longitude");
                     _builder.ArtistLatitude = row.GetDouble("artist_latitude");
                 }
+
+                using (var terms = metadata.GetScalarDataset("artist_terms"))
+                {
+                    var row = terms[0];
+
+                    _builder.Genre = row.GetString("0");
+                }
             }
         }
 

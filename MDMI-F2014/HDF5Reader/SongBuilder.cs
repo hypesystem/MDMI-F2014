@@ -13,6 +13,7 @@ namespace HDF5Reader
         public double Familiarity, Hotttnesss;
 
         public double Danceability, Duration, Energy, Tempo, ArtistLongtitude, ArtistLatitude;
+        public string Genre;
         public Key Key;
         public TimeSignature TimeSignature;
 
@@ -35,7 +36,8 @@ namespace HDF5Reader
                 key: Key,
                 timeSignature: TimeSignature,
                 segmentStats: SegmentStats,
-                sectionsStats: SectionsStats
+                sectionsStats: SectionsStats,
+                genre: Genre
             );
         }
     }

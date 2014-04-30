@@ -14,7 +14,7 @@ namespace UltimateConverter9000
 {
     class Program
     {
-        static string data_path = @"\\psf\Dropbox\MillionSongSubset\data";
+        static string data_path = @"C:\Users\hypesystem\Downloads\millionsongsubset_full(1)\MillionSongSubset\data";
 
         static int chunk_size = 100;
 
@@ -58,7 +58,7 @@ namespace UltimateConverter9000
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("An error occurred! Skipping file " + file + "  " + e);
+                    Console.WriteLine("An error occurred! Skipping file " + file);
                 }
                 
                 i++;

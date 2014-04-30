@@ -24,7 +24,7 @@ namespace UltimateConverter9000
         void FindAllH5FilesRecursively(string folder)
         {
             if (!Directory.Exists(folder))
-                throw new ArgumentException("Path is not a folder.", "folder");
+                throw new ArgumentException("Path is not a folder ("+folder+").", "folder");
 
             FindAllH5Files(folder);
 

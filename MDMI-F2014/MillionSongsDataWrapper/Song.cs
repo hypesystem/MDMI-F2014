@@ -68,6 +68,7 @@ namespace MillionSongsDataWrapper
             map.Add("ArtistName", ArtistName);
             map.Add("TrackName", TrackName);
             map.Add("Genre", Genre);
+            return map;
         }
     }
 }
