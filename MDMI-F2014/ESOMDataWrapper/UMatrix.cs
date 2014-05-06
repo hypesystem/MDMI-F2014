@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace ESOMDataWrapper
 {
-    internal class UMatrix
+    public class UMatrix
     {
         public readonly double[,] Heights;
 
@@ -41,12 +41,13 @@ namespace ESOMDataWrapper
                     var j = 0;
                     foreach (var height in lines.Select(line => line.Split(new[] {'\t'})))
                     {
+                        j = 0;
                         foreach (var h in height)
                         {
                             heights[i, j] = double.Parse(h);
+                            j++;
                         }
-                        j++;
-                        if (j == l) i++;
+                        i++;
                     }
                     return new UMatrix(heights);
                 }
