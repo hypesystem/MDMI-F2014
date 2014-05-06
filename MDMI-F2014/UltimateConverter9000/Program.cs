@@ -28,6 +28,7 @@ namespace UltimateConverter9000
             var stopwatch = new Stopwatch();
 
             var writer = new LRNWriter.LRNWriter("data.lrn", trav.Files.Count());
+            var writer2 = new NamesWriter.NamesWriter("data.names", trav.Files.Count());
 
             int i = 0;
             stopwatch.Start();
@@ -43,6 +44,12 @@ namespace UltimateConverter9000
                     stopwatch.Start();
                     writer.AddFilesToWrite(files_to_write);
                     writer.WriteSongsToFile();
+
+                    writer2.AddFilesToWrite(files_to_write);
+                    writer2.WriteSongsToFile();
+                    
+
+                    
                     files_to_write = new List<Song>();
 
                     stopwatch.Stop();
