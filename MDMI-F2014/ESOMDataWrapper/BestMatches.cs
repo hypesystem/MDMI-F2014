@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ESOMDataWrapper
 {
-    class BestMatches
+    public class BestMatches
     {
         //index -> row,col
         public readonly Dictionary<int, Tuple<int, int>> Index2BestMatch;
