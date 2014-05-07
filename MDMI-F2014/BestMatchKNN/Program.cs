@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace BestMatchKNN
 {
-    class Program
+    public class Program
     {
+        static void Main(String[] args)
+        {
+            // Read in file. 
+            // Run graph
+            // Run shortest path from two songs..
+
+        }
     }
 }

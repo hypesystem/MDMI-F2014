@@ -10,7 +10,7 @@ namespace ESOMDataWrapperTest
         [TestMethod]
         public void TestReadBestMatchesFromFile()
         {
-            var bm = PlaylistPathFinder.FromFile("testFile.bm");
+            var bm = BestMatches.FromFile("testFile.bm");
         }
     }
 }
