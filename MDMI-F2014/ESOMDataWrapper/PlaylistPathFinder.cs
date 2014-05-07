@@ -9,20 +9,20 @@ using System.Threading.Tasks;
 
 namespace ESOMDataWrapper
 {
-    public class BestMatches
+    public class PlaylistPathFinder
     {
         //index -> row,col
         public readonly Dictionary<int, Tuple<int, int>> Index2BestMatch;
         //row,col -> index
         public readonly Dictionary<Tuple<int, int>, int> BestMatch2Index;
 
-        public BestMatches(Dictionary<int, Tuple<int, int>> index2Bestmatches, Dictionary<Tuple<int, int>, int> bestMatch2Index)
+        public PlaylistPathFinder(Dictionary<int, Tuple<int, int>> index2Bestmatches, Dictionary<Tuple<int, int>, int> bestMatch2Index)
         {
             Index2BestMatch = index2Bestmatches;
             BestMatch2Index = bestMatch2Index;
         }
 
-        public static BestMatches FromFile(string fileName)
+        public static PlaylistPathFinder FromFile(string fileName)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace ESOMDataWrapper
                         i2bm.Add(n,new Tuple<int, int>(row,col));
                         bm2i.Add(new Tuple<int, int>(row,col),n);
                     }
-                    return new BestMatches(i2bm,bm2i);
+                    return new PlaylistPathFinder(i2bm,bm2i);
 
                 }
             }

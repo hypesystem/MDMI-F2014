@@ -61,6 +61,10 @@
       <Project>{24796e43-88ea-48f0-afc1-1bb2ecdbc97d}</Project>
       <Name>MillionSongsDataWrapper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NamesWriter\NamesWriter.csproj">
+      <Project>{d6d291da-7a54-4f7d-9a9e-5adff98fa8af}</Project>
+      <Name>NamesWriter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
