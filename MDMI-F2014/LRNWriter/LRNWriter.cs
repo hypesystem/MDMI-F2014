@@ -107,14 +107,14 @@ namespace LRNWriter
                 row.Append(plusRow + TABCHAR);
             }
 
-            var map1 = song.GetIgnoredAttributeMap();
-            foreach (var key in map1.Keys)
-            {
-                string plusRow = "";
-                if (map1[key] == null) plusRow += "NaN";
-                else plusRow += map1[key].ToString();
-                row.Append(plusRow + TABCHAR);
-            }
+            //var map1 = song.GetIgnoredAttributeMap();
+            //foreach (var key in map1.Keys)
+            //{
+            //    string plusRow = "";
+            //    if (map1[key] == null) plusRow += "NaN";
+            //    else plusRow += map1[key].ToString();
+            //    row.Append(plusRow + TABCHAR);
+            //}
 
             return row.ToString();
         }
@@ -153,12 +153,12 @@ namespace LRNWriter
                 columnNameBuilder.Append(moreNames + TABCHAR);
 
             }
-            foreach (var moremoreNames in _exampleSong.GetIgnoredAttributeMap().Keys)
-            {
-                _columnCount++;
-                columnTypeBuilder.Append("0" + TABCHAR);
-                columnNameBuilder.Append(moremoreNames + TABCHAR);
-            }
+            //foreach (var moremoreNames in _exampleSong.GetIgnoredAttributeMap().Keys)
+            //{
+            //    _columnCount++;
+            //    columnTypeBuilder.Append("0" + TABCHAR);
+            //    columnNameBuilder.Append(moremoreNames + TABCHAR);
+            //}
 
         }
 
