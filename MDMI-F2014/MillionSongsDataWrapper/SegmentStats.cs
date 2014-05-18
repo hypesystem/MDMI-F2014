@@ -41,8 +41,6 @@ namespace MillionSongsDataWrapper
                 _aggregatesList.AddRange(Timbre);
                 }
                 return _aggregatesList;
-                    
-
             }
         }
 
