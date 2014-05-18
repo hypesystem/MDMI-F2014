@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HDF5Reader\HDF5Reader.csproj">
+      <Project>{021c7639-a2ed-4004-91fc-3ec0b6efc4c6}</Project>
+      <Name>HDF5Reader</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MillionSongsDataWrapper\MillionSongsDataWrapper.csproj">
       <Project>{24796E43-88EA-48F0-AFC1-1BB2ECDBC97D}</Project>
       <Name>MillionSongsDataWrapper</Name>
