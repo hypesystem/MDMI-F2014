@@ -48,6 +48,11 @@ namespace MillionSongsDataWrapper
             Genre = genre;
         }
 
+        public Song()
+        {
+            
+        }
+
         public SortedDictionary<string, double> GetESOMAttributeMap()
         {
             var map = new SortedDictionary<string, double >();

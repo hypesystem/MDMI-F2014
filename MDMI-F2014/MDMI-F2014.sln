@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestModulo", "TestModulo\Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestMatchKNN", "BestMatchKNN\BestMatchKNN.csproj", "{B4ADCBC5-63B3-4D80-B623-6B58CE83DE61}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltimateReader9000", "UltimateReader9000\UltimateReader9000.csproj", "{EEF6663F-53D7-4EF7-A95A-A58A3C20AF78}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +78,10 @@ Global
 		{B4ADCBC5-63B3-4D80-B623-6B58CE83DE61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4ADCBC5-63B3-4D80-B623-6B58CE83DE61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4ADCBC5-63B3-4D80-B623-6B58CE83DE61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEF6663F-53D7-4EF7-A95A-A58A3C20AF78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEF6663F-53D7-4EF7-A95A-A58A3C20AF78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEF6663F-53D7-4EF7-A95A-A58A3C20AF78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEF6663F-53D7-4EF7-A95A-A58A3C20AF78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
