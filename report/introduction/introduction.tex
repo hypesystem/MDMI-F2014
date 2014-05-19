@@ -1,8 +1,6 @@
 \section{Introduction} % (fold)
 \label{sec:introduction}
-Automatic detection of similarities between songs is of potential use in a number of applications, such as recommender systems or automatic playlist generation. This report is concerned with the latter.
-
-We will discuss how we have applied data mining techniques in order to generate lists of songs, where each song in the list is the most similar to the preceding one in the data-set.
+Automatic detection of similarities between songs is of potential use in a number of applications, such as recommender systems or automatic playlist generation. This report is concerned with the latter. Our objective in this project is to use data mining algorithms to generate an ordered lists of songs, where each song in the list is similar to the preceeding song in terms of harmonic, spectral and dynamic content.
 \\\\
 The data was provided by LABROSA\footnote{See the Million Song Dataset project website: \texttt{http://labrosa.ee.columbia.edu/millionsong/}.} and contains data of one million songs, amounting to 250GB of data. It will be the center of discussion in this part of the report.
 \subsection{The Million Song Dataset} % (fold)
@@ -11,7 +9,7 @@ The Million Song Dataset was created under a grant from the National Science Fou
 \\\\
 Each record in the dataset corresponds to a single song, each containing 54 fields. Most of these are meta-data such as artist name, song name, tempo, key etc.. We will not discuss each field in detail here, but a full list can be found in appendix \ref{sec:field_list}.
 \\\\
-The fields primarily used in this project, which also deserve a more thorough explanation, are the fields \textbf{sections} and \textbf{segments}. The segments field is the result of automatically analysing the song, and identifying short segments, usually under a second in length, that are uniform in loudness, timbre, and harmony. The field is represented as a list of data describing these sections:
+The fields primarily used in this project, which also deserve a more thorough explanation, are the fields \textbf{sections} and \textbf{segments}. The segments field is the result of automatically analysing the song, and identifying short segments, usually under a second in length, that are uniform in loudness, timbre, and harmony. The field is represented as a list of data describing these segments. Each segment is described by 8 sub-attributes:
 
 \begin{itemize}
 	\item \textbf{start} \\The start of the segment in seconds.
@@ -25,7 +23,7 @@ The fields primarily used in this project, which also deserve a more thorough ex
 \end{itemize}
 \noindent The list of segments as a whole can be thought of as representing the small scale temporal characteristics of the song: how the song changes over time with respect to loudness, pitch and timbre.
 \\\\
-The sections field is a list of data describing the large scale temporal characteristics: large changes in rhythm or timbre, e.g verse, chorus, guitar solo etc.. The list contains:
+The sections field is a list of data describing the large scale temporal characteristics: large changes in rhythm or timbre, e.g verse, chorus, guitar solo etc.. Each section is described by 3 attributes:
 \begin{itemize}
 	\item \textbf{start} \\The start of the section in seconds.
 	\item \textbf{duration} \\The duration of the section in seconds.
