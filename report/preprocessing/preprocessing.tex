@@ -2,8 +2,8 @@
 \label{sec:preprocessing}
 
 The Million Song Dataset is provided in the HDF5 format, a format developed by NASA, and renowned for its extendability. HDF5
-allows data formats to be designed specifically for data. For the song data, only fairly straight-forward data structures exist,
-but the amount of data is huge.
+allows data formats to be designed specifically for data. \citep{hdfgrp} For the song data, only fairly straight-forward dat
+structures exist, but the amount of data is huge.
 
 We are using Data Bionics ESOM Analyzer (ESOM) to analyze the data. ESOM uses a tab-separated data format called LRN, and learning
 from the full dataset is infeasible. As such, we need to both select the relevant data and convert it to the correct file format.
