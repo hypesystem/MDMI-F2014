@@ -1,4 +1,34 @@
 \subsection{Parsing Data}
 \label{sec:preprocessing_parsing}
 
-Reading from HDF5, writing to LRN. Reading from LRN for quicker reading.
+HDF5, the fifth iteration of the \emph{hierachical data format}, is only supported by C, with a part of the API available
+in C\# wrappers. These wrappers, however, are direct ports of the C API: not very object oriented, and not very easy to use.
+
+To parse the data, an object oriented wrapper was created, handling the reading of data in a more accessible manner. HDF5 files
+are organized in files, each file containing several groups (like folders in a normal file system). Each group contains
+datasets of various types.
+
+There are scalar and compound datasets, where a scalar dataset can be seen as a single multi-dimensional point, and compound
+datasets are much like those found in relational databases (albeit without the relations): attribute names are used to describe
+the different columns; each column has a specific type; and the dataset can have several rows.
+
+\begin{figure}[h!]
+	\begin{tabular}{|p{\textwidth}|}
+		\hline
+		\begin{verbatim}
+			var file = new File(filename);
+			var metadata_group = file.GetGroup("metadata");
+			var song_data = metadata_group.GetCompoundDataset("songs");
+			string artist_name = song_data[0].GetString("artist_name");
+		\end{verbatim} \\
+		\hline
+	\end{tabular}
+	\caption{Example of syntax built to read HDF5 files (found in the \emph{HDF5Reader} library).}
+\end{figure}
+
+The HDF5Reader reads to a virtual representation of songs (the Song class), which contains the all the relevant fields for our data
+mining.
+
+The LRN format is simply a tab-separated format, with the first few lines describing the contents of the file. Writing to this format
+is straight-forward. In order to be able to load the data quickly for further data mining, we have created an LRNReader, which reads
+the data to Songs.
