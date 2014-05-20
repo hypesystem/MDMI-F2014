@@ -1,35 +1,35 @@
 
 \section{Introduction} % (fold)
 \label{sec:introduction}
-Automatic detection of similarities between songs is of potential use in a number of applications, such as recommender systems or automatic playlist generation. This report is concerned with the latter. Our objective in this project is to use data mining algorithms to generate an ordered lists of songs, where each song in the list is similar to the preceeding song in terms of harmonic, spectral and dynamic content.
+Automatic detection of similarities between songs is of potential use in a number of applications, such as recommender systems or automatic playlist generation. This report is concerned with the latter. Our objective in this project is to use data mining algorithms, given a starting and ending song, to generate an ordered lists of songs, where each song in the list is similar to the preceding song in terms of harmonic, spectral and dynamic content.
 \\\\
-The data was provided by LABROSA\footnote{See the Million Song Dataset project website: \texttt{http://labrosa.ee.columbia.edu/millionsong/}.} and contains data of one million songs, amounting to 250GB of data. It will be the center of discussion in this part of the report.
+We use the Million Song Dataset provided by LABROSA\footnote{See the Million Song Dataset project website: \texttt{http://labrosa.ee.columbia.edu/millionsong/}.}, which contains data of one million songs, amounting to 250GB of data.
 \subsection{The Million Song Dataset} % (fold)
 \label{sub:the_million_song_dataset}
 The Million Song Dataset was created under a grant from the National Science Foundation, project IIS-0713334. The original data was contributed by The Echo Nest, as part of an NSF-sponsored GOALI collaboration. It is distributed freely by \textit{Laboratory for the Recognition and Organization of Speech and Audio} \citep{bert11}.
 \\\\
-Each record in the dataset corresponds to a single song, each containing 54 fields. Most of these are meta-data such as artist name, song name, tempo, key etc.. We will not discuss each field in detail here, but a full list can be found in appendix \ref{sec:field_list}.
+Each record in the dataset corresponds to a single song, containing 54 fields. Most of the fields contain metadata such as artist name, track name, tempo, key, etc. We will not discuss each field in detail here, but a full list can be found in appendix \ref{sec:field_list}.
 \\\\
-The fields primarily used in this project, which also deserve a more thorough explanation, are the fields \textbf{sections} and \textbf{segments}. The segments field is the result of automatically analysing the song, and identifying short segments, usually under a second in length, that are uniform in loudness, timbre, and harmony. The field is represented as a list of data describing these segments. Each segment is described by 8 sub-attributes:
+The fields primarily used in this project are \textbf{sections} and \textbf{segments}. The segments field is the result of automatically analysing the song, and identifying short segments (usually under a second in length) that are uniform in loudness, timbre, and harmony. Each segment is described by 8 sub-attributes:
 
-\begin{itemize}
-	\item \textbf{start} \\The start of the segment in seconds.
-	\item \textbf{duration} \\Duration of the segment in seconds.
-	\item \textbf{confidence} \\Confidence of the segment in percent.
-	\item \textbf{loudness start} \\The loudness at the beginning of the segment in dB.
-	\item \textbf{loudness max time} \\The time at which the loudness peaks in the segment in seconds.
-	\item \textbf{loudness max} \\The peak loudness of the segment in dB. See figure \ref{fig:loudness} in the figures section for a graphical representation.
-	\item \textbf{pitches} \\A 12 dimensional vector describing the harmonic content of the segment. Each element of the vector corresponds to a note in the half-tone system, such as C, C\#, D etc.. The value of e.g the first element in the vector signifies how strongly the note C is represented in the segment, the second how strongly the note C\# is represented and so on. See figure \ref{fig:pitch} in the figures section for a graphical representation.
-	\item \textbf{timbre} \\A 12 dimensional vector describing the spectral content of the segment. each element of the vector is the coefficient of a linear combination of 12 functions representing a spectral quality of the segment, such as brightness, flatness, strong attack etc.. See figure \ref{fig:timbre} in the figures section for a graphical representation.
-\end{itemize}
+\begin{description}
+	\item[start] The start of the segment in seconds.
+	\item[duration] Duration of the segment in seconds.
+	\item[confidence] Confidence of the segment in percent.
+	\item[loudness start] The loudness at the beginning of the segment in dB.
+	\item[loudness max time] The time at which the loudness peaks in the segment in seconds.
+	\item[loudness max] The peak loudness of the segment in dB. See figure \ref{fig:loudness} in the figures section for a graphical representation.
+	\item[pitches] A 12 dimensional vector describing the harmonic content of the segment. Each element of the vector corresponds to a note in the half-tone system, such as C, C\#, D etc. The value of e.g the first element in the vector signifies how strongly the note C is represented in the segment, the second how strongly the note C\# is represented and so on. See figure \ref{fig:pitch} in the figures section for a graphical representation.
+	\item[timbre] A 12 dimensional vector describing the spectral content of the segment. each element of the vector is the coefficient of a linear combination of 12 functions representing a spectral quality of the segment, such as brightness, flatness, strong attack etc.. See figure \ref{fig:timbre} in the figures section for a graphical representation.
+\end{description}
 \noindent The list of segments as a whole can be thought of as representing the small scale temporal characteristics of the song: how the song changes over time with respect to loudness, pitch and timbre.
 \\\\
-The sections field is a list of data describing the large scale temporal characteristics: large changes in rhythm or timbre, e.g verse, chorus, guitar solo etc.. Each section is described by 3 attributes:
-\begin{itemize}
-	\item \textbf{start} \\The start of the section in seconds.
-	\item \textbf{duration} \\The duration of the section in seconds.
-	\item \textbf{confidence} \\The confidence of the section in percent.
-\end{itemize}
+The sections field is a list of data describing the large scale temporal characteristics: large changes in rhythm or timbre. For example, verse, chorus, and guitar solo would be separate sections. Each section is described by 3 attributes:
+\begin{description}
+	\item[start] The start of the section in seconds.
+	\item[duration] The duration of the section in seconds.
+	\item[confidence] The confidence of the section in percent.
+\end{description}
 % subsection the_million_song_dataset (end)
 
 % section introduction (end)
