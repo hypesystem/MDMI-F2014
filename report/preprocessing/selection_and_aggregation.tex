@@ -1,3 +1,4 @@
+
 \subsection{Selection and Aggregation}
 \label{sec:preprocessing_selection}
 \label{sec:preprocessing_aggregation}
@@ -5,5 +6,13 @@
 We selected some values, left others out.
 
 We aggregated a lot of dimensions. Why? Reference the paper that talked about the statistical dimensions used.
+
+\subsection{Selection and Aggregation}
+\label{sec:preprocessing_selection}
+A number of attributes of the songs were not appropriate to use for similarity analysis. Consider the artist name attribute for example. Two songs by the same artist are obviously similar in that attribute, but might be completely different in their harmonic, dynamic and spectral content. As a consequence, attributes such as artist name, song name, release year etc. were deselected for the final data mining process. In other words, the attributes that \textit{were} selected for use in later data mining processes were segments and sections data, in addition to structural and harmonic meta-data attributes such as key-signature, tempo, time-signature and similar.
+\\\\
+In order to compare the segments and sections data of two songs to determine their similarity, it is necessary to process the lists of data to produce a comparable representation. The problem with the segments data for example, is that a segment from one song is not directly comparable with a segment from another song, since it represents a piece of the audio that is uniform in harmonic, dynamic and spectral content. This means that there is no straightforward way of determining which segments of two songs that should be used for comparison. Moreover, whether two segments of of any two songs are similar or not, is not indicative of whether the songs are similar as a whole.
+\\\\
+The approach we adopted was to aggregate the segments and sections data, as suggested by a research article testing the effectiveness of different classification algorithms on the LABROSA million song dataset \citep{schindler12}. In this scheme, every attribute of the segments are aggregated to 8 statistical moments: mean, median, max, min, value range, skewness, kurtosis and variance. For the vector sub-attributes such as pitch and timbre, the elements of each of the vectors are aggregated in the same manner. For example, the first elements of all the pitch vectors are aggregated into these 8 statistical moments, the second element is aggregated in the same way and so on. These aggregates can then be used to used to compare the songs.
 
 % section preprocessing (end)

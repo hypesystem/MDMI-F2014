@@ -1,4 +1,8 @@
+
 \section{Self Organizing Maps} % (fold)
 \label{sec:self_organizing_maps}
+The task of finding transitions between songs such that each song is similar to the last, is essentially a shortest path problem, which can be solved by constructing a graph. Each song could be a vertex in this graph, and the euclidean distance between songs could be used for edge weights. However, there is no obvious way to determine which songs should be connected to which other songs. Essentially, every vertex in the graph would have to be connected to every other vertex, creating a complete graph. Traditional shortest path algorithms would need considerable time to find a solution in such a graph, given the amount of data.
+\\\\
+Instead of the infeasible approach described above, we decided to use a self organizing map to represent the data.
 
 % section self_organizing_maps (end)
