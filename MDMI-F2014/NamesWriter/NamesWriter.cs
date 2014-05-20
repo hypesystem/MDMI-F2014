@@ -12,6 +12,10 @@ using MillionSongsDataWrapper;
 
 namespace NamesWriter
 {
+    /// <summary>
+    /// Writes names files, containging extra info used by ESOM. This makes songs identifiable
+    /// (in ESOM) by artist and track name.
+    /// </summary>
     public class NamesWriter
     {
         private static readonly char TABCHAR = '\t';

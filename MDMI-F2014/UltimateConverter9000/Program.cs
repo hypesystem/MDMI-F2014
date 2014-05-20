@@ -12,14 +12,16 @@ using System.Diagnostics;
 
 namespace UltimateConverter9000
 {
+    /// <summary>
+    /// This program reads all of the hdf5 files in a directory, parsing them as songs. The songs are then written to
+    /// an LRN file. It also times the conversion and writes out in chunks of 100 files to avoid memory overload (garbage
+    /// collection will clean up the data during conversion).
+    /// </summary>
     class Program
     {
         static string data_path = @"C:\Users\hypesystem\Downloads\millionsongsubset_full(1)\MillionSongSubset\data";
 
         static int chunk_size = 100;
-
-        static ConcurrentQueue<Song> song_queue = new ConcurrentQueue<Song>();
-        static bool all_files_read = false;
 
         static void Main(string[] args)
         {
