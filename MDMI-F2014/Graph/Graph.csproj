@@ -40,7 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BellmanFordSP.cs" />
     <Compile Include="DirectedEdge.cs" />
+    <Compile Include="EdgeWeightedDigraph.cs" />
+    <Compile Include="EdgeWeightedDirectedCycle.cs" />
     <Compile Include="IndexMinPQ.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NeuronGraph.cs" />

@@ -7,17 +7,16 @@ namespace ESOMDataWrapper
 {
     public class UMatrix
     {
-        public readonly double[,] Heights;
+        public readonly double[,,] Heights;
 
-        public UMatrix(double[,] heights)
+        public UMatrix(double[,,] heights)
         {
             Heights = heights;
         }
 
         public static UMatrix FromFile(string fileName)
         {
-            try
-            {
+            
                 using (var sr = new StreamReader(fileName))
                 {
                     const string klRegexStr = @"\% ?([0-9]+ ?){2}$";
@@ -34,7 +33,7 @@ namespace ESOMDataWrapper
                         l = int.Parse(kl[1]);
                         headerRead = true;
                     }
-                    var heights = new double[k, l];
+                    var heights = new double[k, l, 1];
                     var data = sr.ReadToEnd();
                     var lines = data.Split(new[] {'\n'});
                     var i = 0;
@@ -44,19 +43,16 @@ namespace ESOMDataWrapper
                         j = 0;
                         foreach (var h in height)
                         {
-                            heights[i, j] = double.Parse(h);
+                            if (h.Equals("")) continue;
+                            heights[i, j, 0] = double.Parse(h);
                             j++;
                         }
                         i++;
                     }
                     return new UMatrix(heights);
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("File could not be read");
-                Console.WriteLine(e.Message);
-            }
+            
+            
             return null;
         }
     }

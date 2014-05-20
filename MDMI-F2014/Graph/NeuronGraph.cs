@@ -15,11 +15,15 @@ namespace Graph
         private Dictionary<Int32, double[]> _prototypeVectors;
         private int _V; // No of Vertices
         private int _rowLength;
+        private int distanceMode;
 
-        public NeuronGraph(double[,,] inputGrid)
+        public NeuronGraph(double[,,] inputGrid, int distMode)
         {
+            distanceMode = distMode;
             MapNeuronToVertex(inputGrid);
             ConstructEdgesFromVertices();
+            
+
         }
 
         public List<DirectedEdge> adj(int V)
@@ -63,9 +67,19 @@ namespace Graph
 
         private void addEdge(int one, int other)
         {
-            double dist = EuclideanDistance.Distance(_prototypeVectors[one], _prototypeVectors[other]);
-            _adjacencyList[one].Add(new DirectedEdge(one, other, dist));
-            _adjacencyList[other].Add(new DirectedEdge(other,one, dist));
+            if (distanceMode == 1)
+            {
+                double dist = RelativeDistance.Distance(_prototypeVectors[one], _prototypeVectors[other]);
+                _adjacencyList[one].Add(new DirectedEdge(one, other, (decimal) dist));
+              //  _adjacencyList[other].Add(new DirectedEdge(other, one, -dist));
+
+            }
+            else
+            {
+                double dist = EuclideanDistance.Distance(_prototypeVectors[one], _prototypeVectors[other]);
+                _adjacencyList[one].Add(new DirectedEdge(one, other, (decimal)dist));
+             //   _adjacencyList[other].Add(new DirectedEdge(other, one, dist));
+            }
         }
 
 

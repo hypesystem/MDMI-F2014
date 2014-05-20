@@ -13,22 +13,22 @@ Each record in the dataset corresponds to a single song, containing 54 fields. M
 The fields primarily used in this project are \textbf{sections} and \textbf{segments}. The segments field is the result of automatically analysing the song, and identifying short segments (usually under a second in length) that are uniform in loudness, timbre, and harmony. Each segment is described by 8 sub-attributes:
 
 \begin{description}
-	\item[start] The start of the segment in seconds.
-	\item[duration] Duration of the segment in seconds.
-	\item[confidence] Confidence of the segment in percent.
-	\item[loudness start] The loudness at the beginning of the segment in dB.
-	\item[loudness max time] The time at which the loudness peaks in the segment in seconds.
-	\item[loudness max] The peak loudness of the segment in dB. See figure \ref{fig:loudness} in the figures section for a graphical representation.
-	\item[pitches] A 12 dimensional vector describing the harmonic content of the segment. Each element of the vector corresponds to a note in the half-tone system, such as C, C\#, D etc. The value of e.g the first element in the vector signifies how strongly the note C is represented in the segment, the second how strongly the note C\# is represented and so on. See figure \ref{fig:pitch} in the figures section for a graphical representation.
-	\item[timbre] A 12 dimensional vector describing the spectral content of the segment. each element of the vector is the coefficient of a linear combination of 12 functions representing a spectral quality of the segment, such as brightness, flatness, strong attack etc.. See figure \ref{fig:timbre} in the figures section for a graphical representation.
+	\item[start] \hfill \\The start of the segment in seconds.
+	\item[duration] \hfill \\Duration of the segment in seconds.
+	\item[confidence] \hfill \\Confidence of the segment in percent.
+	\item[loudness start] \hfill \\The loudness at the beginning of the segment in dB.
+	\item[loudness max time] \hfill \\The time at which the loudness peaks in the segment in seconds.
+	\item[loudness max] \hfill \\The peak loudness of the segment in dB. See figure \ref{fig:loudness} in the figures section for a graphical representation.
+	\item[pitches] \hfill \\A 12 dimensional vector describing the harmonic content of the segment. Each element of the vector corresponds to a note in the half-tone system, such as C, C\#, D etc. The value of e.g the first element in the vector signifies how strongly the note C is represented in the segment, the second how strongly the note C\# is represented and so on. See figure \ref{fig:pitch} in the figures section for a graphical representation.
+	\item[timbre] \hfill \\A 12 dimensional vector describing the spectral content of the segment. each element of the vector is the coefficient of a linear combination of 12 functions representing a spectral quality of the segment, such as brightness, flatness, strong attack etc.. See figure \ref{fig:timbre} in the figures section for a graphical representation.
 \end{description}
 \noindent The list of segments as a whole can be thought of as representing the small scale temporal characteristics of the song: how the song changes over time with respect to loudness, pitch and timbre.
 \\\\
 The sections field is a list of data describing the large scale temporal characteristics: large changes in rhythm or timbre. For example, verse, chorus, and guitar solo would be separate sections. Each section is described by 3 attributes:
 \begin{description}
-	\item[start] The start of the section in seconds.
-	\item[duration] The duration of the section in seconds.
-	\item[confidence] The confidence of the section in percent.
+	\item[start] \hfill \\The start of the section in seconds.
+	\item[duration] \hfill \\The duration of the section in seconds.
+	\item[confidence] \hfill \\The confidence of the section in percent.
 \end{description}
 % subsection the_million_song_dataset (end)
 
