@@ -8,6 +8,9 @@ using LRNWriter;
 
 namespace QuickRead
 {
+    /// <summary>
+    /// This program is a sample reader showing how LRNWriter.LRNReader reads files.
+    /// </summary>
     class Program
     {
         static void Main(string[] args)
