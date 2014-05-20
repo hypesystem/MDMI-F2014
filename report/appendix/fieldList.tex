@@ -1,10 +1,12 @@
 \section{Field List} % (fold)
 \label{sec:field_list}
 
-\begin{center}
+Overview of attributes of each song:
+
+
 \rowcolors{1}{white}{lightblue}
 
-\begin{tabular}{l|l|l}
+\begin{longtable}[c]{l|l|l}
 \textbf{Field name}     & \textbf{Type}   & \textbf{Description} \\
 \hline
 analysis sample rate & float & sample rate of the audio used\\
@@ -34,7 +36,33 @@ end of fade in & float & seconds at the beginning of the song\\
 energy & float & energy from listener point of view\\
 key & int & key the song is in\\
 key confidence & float & confidence measure\\
+loudness & float & overall loudness in dB\\
+mode & int & major or minor\\
+mode confidence & float & confidence measure\\
+release & string & album name\\
+release 7digital & int & id from 7digital.com\\
+sections confidence & array float & confidence measure\\
+sections start & array float & largest grouping in song e.g verse\\
+segments confidence & array float & confidence measure\\
+segments loudness max & array float & max dB value\\
+segments loudness max time & array float & time of max dB value, i.e end of attack\\
+segments loudness max start & array float & dB value at onset\\
+segments pitches & 2D array float & chroma feature, one value per note\\
+segments start & array float & musical events\\
+segments timbre & 2D array float & texture features\\
+similar artists & array string & Echo Nest artist IDs\\
+song hotttnesss & float & algorithmic estimation\\
+song id & string & Echo Nest song id\\
+start of fade out & float & time in sec\\
+tatums confidence & array float & confidence measure\\
+tatums start & array float & smallest rhythmic element\\
+tempo & float & estimated tempo in BPM\\
+time signature & int & estimate of beats per bar\\
+time signature confidence & float & confidence measure\\
+title & string & song title\\
+track id & string & Echo Nest track ID\\
+track 7digitalid & int & ID from 7digital.com\\
+year & int & song release year
 
-\end{tabular}
-\end{center}
+\end{longtable}
 % section field_list (end)
