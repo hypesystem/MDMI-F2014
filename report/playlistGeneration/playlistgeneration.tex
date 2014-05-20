@@ -36,7 +36,25 @@ the prototype vectors of the ESOM and the distance between them as the edges in 
 
 \subsection{Results}
 
-We present two different results of the playlist generation: the results of using the ESOM weights as the basis for our graphs and the results for 
+We present two different results of the playlist generation: the results of using the ESOM weights as the basis for our graphs and the results of using the U-Matrix heights.\\
+Since we use the data mining techniques with an application, we will evaluate the playlists primarily. We define two methods of evaluating our results:
+
+\begin{itemize}
+\item Statistical description of the euclidean distances between each song. We define a low euclidean distance as two songs being similar (the premise of our investigation).\\
+\item Evaluation of the playlist by ear. Since music is subjective we define a good playlist as feeling smooth and transitional in the playlist suggestions \\
+\end{itemize}
+
+First, we present the statistical descriptions of the euclidean distances: 
+
+\begin{center}
+    \begin{tabular}{  l | l | l | p{5cm} }
+    Source & Minimum & Maximum & Average  \\ \hline
+    ESOM & 772 & 7440 & 2135 \\ 
+    UMAT & 601 & 5928 & 2150 \\ 
+   
+    \end{tabular}
+\end{center}
+
 
 
 

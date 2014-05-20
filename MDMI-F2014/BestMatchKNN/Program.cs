@@ -18,18 +18,18 @@ namespace BestMatchKNN
             Console.WriteLine("LRN file read...");
             var bestMatches = ESOMDataWrapper.BestMatches.FromFile("bigmap.bm");
             Console.WriteLine("BM file read...");
-            // var ESOM = ESOMDataWrapper.ESOM.Fromfile("bigmap.wts");
+            var ESOM = ESOMDataWrapper.ESOM.Fromfile("bigmap.wts");
             var UMat = ESOMDataWrapper.UMatrix.FromFile("bigmap.umx");
             Console.WriteLine("UMatrix file read...");
-            var graph = new NeuronGraph(UMat.Heights, 1);
+            var graph = new NeuronGraph(ESOM.Data, 0);
             Console.WriteLine("Built read...");
             int from = 23;
             var fromCoord = bestMatches.Index2BestMatch[from];
             int translatefrom = graph.translate(fromCoord);
 
            // var shortestPath = new ShortestNeuronPath(graph, translatefrom);
-            var shortestPath = new BellmanFordSP(graph, translatefrom);
-            Console.Write("Bellman Ford completed...");
+            var shortestPath = new ShortestNeuronPath(graph, translatefrom);
+            // Console.Write("Bellman Ford completed...");
             var tocoord = bestMatches.Index2BestMatch[296];
             var to = graph.translate(tocoord);
             // Console.Write(shortestPath.HasPathTo(to));
@@ -57,21 +57,26 @@ namespace BestMatchKNN
                     {
                         foreach (var resultint in bestMatches.BestMatch2Index[coord])
                         {
-                            Console.Out.WriteLine("ID: {0} and song name: {1}, artist: {2}", resultint,
-                            songs[resultint].TrackName, songs[resultint].ArtistName);
+                           // Console.Out.WriteLine("Song Name: {0} ... Artist Name: {1}", 
+                           // songs[resultint].TrackName, songs[resultint].ArtistName);
                         }
                     }
 
                 }
                 
             }
+            double min = Double.MaxValue;
+            double max = 0.0;
             for (int i = 0; i < resultSongs.Count - 1; i++)
             {
-                accumulatedDistance += Utilities.EuclideanDistance.Distance(resultSongs[i], resultSongs[i + 1]);
+                double dist = Utilities.EuclideanDistance.Distance(resultSongs[i], resultSongs[i + 1]);
+                if (dist > max) max = dist;
+                if (dist < min && dist != 0) min = dist;
+                accumulatedDistance += dist;
             }
             var avgdist = accumulatedDistance / resultSongs.Count;
-            Console.Out.WriteLine("Total euclidean distance: {0} and average distance: {1}", accumulatedDistance, avgdist);
-            
+            Console.Out.WriteLine("Total euclidean distance: {0} and average distance: {1} ", accumulatedDistance, avgdist);
+            Console.Out.WriteLine("Max distance: {0}... Min distance: {1}", max, min);
             
 
         }
