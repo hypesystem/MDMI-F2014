@@ -47,6 +47,10 @@
     <Compile Include="ShortestNeuronPath.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MillionSongsDataWrapper\MillionSongsDataWrapper.csproj">
+      <Project>{24796e43-88ea-48f0-afc1-1bb2ecdbc97d}</Project>
+      <Name>MillionSongsDataWrapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Utilities\Utilities.csproj">
       <Project>{1ACE537A-F03E-48BC-AC48-B165B8D8DA28}</Project>
       <Name>Utilities</Name>

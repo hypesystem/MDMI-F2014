@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MillionSongsDataWrapper;
 
 namespace Utilities
 {
@@ -17,6 +18,11 @@ namespace Utilities
                 sum += Math.Pow((x[i] - y[i]), 2);
             }
             return Math.Sqrt(sum);
+        }
+
+        public static double Distance(Song x, Song y)
+        {
+            return Distance(x.DistanceArray(), y.DistanceArray());
         }
     }
 }

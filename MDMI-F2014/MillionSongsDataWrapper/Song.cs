@@ -53,6 +53,14 @@ namespace MillionSongsDataWrapper
             
         }
 
+        public double[] DistanceArray()
+        {
+            List<double> list = new List<double>();
+            list.AddRange(SegmentStats.DistanceArray());
+            list.AddRange(SectionsStats.DistanceArray());
+            return list.ToArray();
+        }
+
         public SortedDictionary<string, double> GetESOMAttributeMap()
         {
             var map = new SortedDictionary<string, double >();

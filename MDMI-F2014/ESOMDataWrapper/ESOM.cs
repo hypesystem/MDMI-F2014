@@ -20,8 +20,8 @@ namespace ESOMDataWrapper
 
         public static ESOM Fromfile(string fileName)
         {
-            try
-            {
+            //try
+            //{
                 using (var sr = new StreamReader(fileName))
                 {
                     const string klRegexStr = @"\% ?([0-9]+ ?){2}$";
@@ -32,15 +32,18 @@ namespace ESOMDataWrapper
                     var k = -1;
                     var l = -1;
                     var m = -1;
+                    Boolean fuck = true;
                     while (!headerRead)
                     {
+                        
                         var line = sr.ReadLine();
                         if (line.Contains("#")) continue;
-                        if (klRegex.IsMatch(line))
+                        if (klRegex.IsMatch(line) && fuck)
                         {
                             var kl = line.Replace("%", "").Split(new[] {' '});
                             k = int.Parse(kl[0]);
                             l = int.Parse(kl[1]);
+                            fuck = false;
                             continue;
                         }
                         if (!mRegex.IsMatch(line)) continue;
@@ -58,20 +61,25 @@ namespace ESOMDataWrapper
                         var attributes = line.Split(new[] {'\t'});
                         foreach (var attribute in attributes)
                         {
+                            if(attribute.Equals("")) continue;
                             som[i, j, n] = double.Parse(attribute);
                             n++;
                         }
                         j++;
-                        if (j == l) i++;
+                        if (j == l)
+                        {
+                            j = 0;
+                            i++;
+                        }
                     }
                     return new ESOM(som);
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("File could not be read");
-                Console.WriteLine(e.Message);
-            }
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("File could not be read");
+            //    Console.WriteLine(e.Message);
+            //}
             return null;
         }
     }

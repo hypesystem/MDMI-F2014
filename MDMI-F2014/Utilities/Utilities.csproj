@@ -43,6 +43,12 @@
     <Compile Include="EuclideanDistance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MillionSongsDataWrapper\MillionSongsDataWrapper.csproj">
+      <Project>{24796E43-88EA-48F0-AFC1-1BB2ECDBC97D}</Project>
+      <Name>MillionSongsDataWrapper</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

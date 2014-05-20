@@ -11,6 +11,11 @@
             Duration = new Aggregates();
         }
 
+        public double[] DistanceArray()
+        {
+            return Duration.PropertyValuesList.ToArray();
+        }
+
         public SectionStats(double confidenceMean, Aggregates duration, int count)
         {
             ConfidenceMean = confidenceMean;
