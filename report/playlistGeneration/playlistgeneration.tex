@@ -7,21 +7,21 @@ the overall concept of creating a bridging playlist between two songs. Next, we 
 \subsection{Concept}
 By using an ESOM to cluster and project our data set, we can use the two-dimensional grid of neurons to create paths between songs. A \'bridging playlist\' is found by creating a path between two neurons on the grid and relating songs in our data set to neurons on the path. The path is the shortest path between two neurons with each neuron having a connection to its adjacent neurons. The playlist generation can be explained with the following steps:
 \begin{itemize}
-\item Select two songs from a list and identify their bestmatch neurons on the grid, \\
-\item Let each neuron $ n_{k,i} $  have the property that it is connected to neurons $ [ n_{k+1,i} ; n_{k-1,n} ; n_{k,n+1} ; n_{k,n-1} ], $ \\
-\item Create a shortest path from the previously selected bestmatch neurons, \\
-\item Delete any neuron from the path that is not a bestmatch neuron, \\
+\item Select two songs from a list and identify their bestmatch neurons on the grid.
+\item Let each neuron $ n_{k,i} $  have the property that it is connected to neurons $ [ n_{k+1,i} ; n_{k-1,n} ; n_{k,n+1} ; n_{k,n-1} ], $
+\item Create a shortest path from the previously selected bestmatch neurons.
+\item Delete any neuron from the path that is not a bestmatch neuron.
 \item Associate bestmatches with songs that constitute the playlist
 \end{itemize}
-
+\noindent
 This description of the concept presents two important challenges. First, how do we weigh each connection from neuron to neuron, and second, how do we associate bestmatch neurons with songs that qualify to fit the playlist?
 These challenges are addressed next in the algorithms section.
 
 \subsection{Algorithms}
 
-To address the first challenge of connecting neurons and finding a path between them, we use a popular mode of abstraction: graph building and shortest path finding in graphs. We use a standard adjacency list based graph \citep{algs4} that represent nodes as vertices and connections between nodes as edge. Each edge is weighted by calculating the euclidean distance between the prototype vectors of each neuron. \\
-Creating a path between two bestmatch neurons is then done by using Dijkstra\'s shortest path algorithm for non-negative weighted graphs \citep{algs4}. We will claim but not prove that if the graph is built properly, this algorithm will find the shortest path (if it exists) between two nodes. \\
-
+To address the first challenge of connecting neurons and finding a path between them, we use a popular mode of abstraction: graph building and shortest path finding in graphs. We use a standard adjacency list based graph \citep{algs4} that represent nodes as vertices and connections between nodes as edge. Each edge is weighted by calculating the euclidean distance between the prototype vectors of each neuron. \\\\
+Creating a path between two bestmatch neurons is then done by using Dijkstra\'s shortest path algorithm for non-negative weighted graphs \citep{algs4}. We will claim but not prove that if the graph is built properly, this algorithm will find the shortest path (if it exists) between two nodes. 
+\\\\
 Applying the algorithm to the ESOM yields a list of bestmatch neurons. This list must then be associated with songs that originally made the bestmatch neuron fire. In order for us to do this, we log each song-to-neuron of the final epoch of the ESOM training. This, however, may still yield a list of several songs on each bestmatch, depending on clustering, ESOM size and song similarity. \\
 Choosing from these songs is then done by using the K-Nearest Neighbours (KNN) algorithm \citep{han12}. K-Nearest is mainly used for classifying and predicting new sets of data, but since it's essentially an algorithm for finding the $k$ closest points in a space, we can use it to choose songs that fit our playlist. Our method for doing so is as follows:
 
@@ -36,20 +36,20 @@ Choosing from these songs is then done by using the K-Nearest Neighbours (KNN) a
 	\includegraphics[width=\textwidth]{figures/playlist-generation}
 	\caption{Illustration of the playlist algorithm.}
 \end{figure}
-
-By using KNN, we attempt to smoothen the transition between each possible song result. \\
+\noindent
+By using KNN, we attempt to smoothen the transition between each possible song result. \\\\
 The final thing we will discuss in the algorithms section is the choice of basis for our graph. By default, we chose 
 the prototype vectors of the ESOM and the distance between them as the edges in the graph. However, an alternative solution is to use the heights of the U-Matrix as the edges between neurons. The results are very similar, which is expected as the heights of the U-Matrix are the average distance to adjacent neurons. However, the actual songlist produced by the KNN song is strikingly different. We present the results in the following section.
 
 \subsection{Results}
 
-We present two different results of the playlist generation: the results of using the ESOM weights as the basis for our graphs and the results of using the U-Matrix heights.\\
+We present two different results of the playlist generation: the results of using the ESOM weights as the basis for our graphs and the results of using the U-Matrix heights.\\\\
 Each result is generated applying our algorithm to some start and end songs, each fixed when switching between ESOM and U-Matrix paths.
 Since we use the data mining techniques with an application, we will evaluate the playlists primarily. We define two methods of evaluating our results:
 
 \begin{itemize}
-\item Statistical description of the euclidean distances between each song. We define a low euclidean distance as two songs being similar (the premise of our investigation).\\
-\item Evaluation of the playlist by ear. Since music is subjective we define a good playlist as feeling smooth and transitional in the playlist suggestions \\
+\item Statistical description of the euclidean distances between each song. We define a low euclidean distance as two songs being similar (the premise of our investigation).
+\item Evaluation of the playlist by ear. Since music is subjective we define a good playlist as feeling smooth and transitional in the playlist suggestions.
 \end{itemize}
 
 First, we present the statistical descriptions of the euclidean distances: 
@@ -61,15 +61,15 @@ First, we present the statistical descriptions of the euclidean distances:
     U-Matrix & 601 & 5928 & 2150 \\ 
     \end{tabular}
 \end{center}
-
-We observe that the average distance between songs is slightly higher on the U-Matrix paths than on the ESOM. However, the minimum distance is higher for the ESOM, which indicate jumps in song transition, which we want to avoid more than a slightly larger average. We note that more descriptors such as standard deviation for the distances would be  preferable however we have prioritized the subjective evaluation as the playlist validity is ultimately subjective.\\
-
-A manual evaluation of the playlists generated by the ESOM path and the U-Matrix path have been made. The playlist descriptions (songs and artists) are available in  figures \ref{fig:esomres} and \ref{fig:umatres}. Several people participated in evaluating the transition qualities of the playlist. In general, the playlists generated by the U-Matrix were found to be smoother and contain less weird changes in music. While the ESOM paths arguably have lower average distance, songs commonly seemed 'out-of-place' in these paths as compared to the U-Matrix paths. \\
+\noindent
+We observe that the average distance between songs is slightly higher on the U-Matrix paths than on the ESOM. However, the minimum distance is higher for the ESOM, which indicate jumps in song transition, which we want to avoid more than a slightly larger average. We note that more descriptors such as standard deviation for the distances would be  preferable however we have prioritized the subjective evaluation as the playlist validity is ultimately subjective.
+\\\\
+A manual evaluation of the playlists generated by the ESOM path and the U-Matrix path have been made. The playlist descriptions (songs and artists) are available in  figures \ref{fig:esomres} and \ref{fig:umatres}. Several people participated in evaluating the transition qualities of the playlist. In general, the playlists generated by the U-Matrix were found to be smoother and contain less weird changes in music. While the ESOM paths arguably have lower average distance, songs commonly seemed 'out-of-place' in these paths as compared to the U-Matrix paths.
 
 \subsection{Alternatives}
 
 We conclude the playlist section by discussing alternative methods which, given more time and research, might produce 
-alternative and even better results. \\
+alternative and even better results. \\\\
 First, an alternative method of building the graph is proposed when using the U-Matrix. Instead of calculating the relative distance between two neurons as the weight, the property of 'moving down a mountain' could be given a negative weight, making it more likely to be chosen in the shortest path between songs. Such a choice condemns Dijkstra's algorithm as it does not support negative weights, and the Bellman Ford algorithm should be used instead \citep{algs4}. We experimented with this but did not obtain results.\\
 Secondly, using euclidean distance as the method for determining 'closeness' in a song could be challenged. Instead, multi-dimensional distance methods could be used or even some completely different options. Experiments with these paired with subjective evaluations should be made. \\
 
