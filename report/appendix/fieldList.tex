@@ -1,4 +1,40 @@
 \section{Field List} % (fold)
 \label{sec:field_list}
 
+\begin{center}
+\rowcolors{1}{white}{lightblue}
+
+\begin{tabular}{l|l|l}
+\textbf{Field name}     & \textbf{Type}   & \textbf{Description} \\
+\hline
+analysis sample rate & float & sample rate of the audio used\\
+artist 7digitalid& int & ID from 7digital or -1 \\
+artist familiarity & float & algorithmic estimation\\
+artist hotttnesss & float & algorithmic estimation\\
+artist id & string & Echo Nest ID\\
+artist latitude & float & latitude\\
+artist location & string & location name\\
+artist longitude & float & longitude\\
+artist mbid & string & ID from musicbrainz.org\\
+artist mbtags & array string & tags from musicbrainz.org\\
+artist mbtags count & array int & tag counts for musicbrainz tags\\
+artist name & string & artist name\\
+artist playmeid & int & ID from playme.com\\
+artist terms & array string & Echo Nest tags\\
+artist terms freq & array float & Echo Nest tags freqs\\
+artist terms weight & array float & Echo Nest tags weight\\
+audio md5 & string & audio hashcode\\
+bars confidence & array float & confidence measure\\
+bars start & array float & beginning of bars, usually on a beat\\
+beats confidence & array float & confidence measure\\
+beats start & array float & result of beat tracking\\
+danceability & float & algorithmic estimation\\
+duration & float & in seconds\\
+end of fade in & float & seconds at the beginning of the song\\
+energy & float & energy from listener point of view\\
+key & int & key the song is in\\
+key confidence & float & confidence measure\\
+
+\end{tabular}
+\end{center}
 % section field_list (end)
