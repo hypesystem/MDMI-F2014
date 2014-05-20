@@ -20,9 +20,24 @@ These challenges are addressed next in the algorithms section.\\
 \subsection{Algorithms}
 
 To address the first challenge of connecting neurons and finding a path between them, we use a popular mode of abstraction: graph building and shortest path finding in graphs. We use a standard adjacency list based graph CITATION that represent nodes as vertices and connections between nodes as edge. Each edge is weighted by calculating the euclidean distance between the prototype vectors of each neuron. \\
-Creating a path between two bestmatch neurons is then done by using Dijkstra\'s shortest path algorithm for non-negative weighted graphs CITATION. We will claim but not prove that if the graph is built properly, this algorithm guarantees the shortest path (if it exists) between two nodes. \\
+Creating a path between two bestmatch neurons is then done by using Dijkstra\'s shortest path algorithm for non-negative weighted graphs CITATION. We will claim but not prove that if the graph is built properly, this algorithm will find the shortest path (if it exists) between two nodes. \\
 
-The second problem of associating w  
+Applying the algorithm to the ESOM yields a list of bestmatch neurons. This list must then be associated with songs that originally made the bestmatch neuron fire. In order for us to do this, we log each song-to-neuron of the final epoch of the ESOM training. This, however, may still yield a list of several songs on each bestmatch, depending on clustering, ESOM size and song similarity. \\
+Choosing from these songs is then done by using the K-Nearest Neighbours (KNN) algorithm CITATION. K-Nearest is mainly used for classifying and predicting new sets of data, but since it's essentially an algorithm for finding the $k$ closest points in a space, we can use it to choose songs that fit our playlist. Our method for doing so is as follows:
+
+\begin{itemize}
+\item Starting with a list $ n_1, n_2, \dots, n_k $ , and their associated lists $ l_1, l_2, \dots, l_n $ where $n$ denotes a step on the path between two songs and $l$ denotes songs on that particular step: \\
+\item Select $ n_{i+1} $ from $ l_{i+1} $ with KNN such that the source song of the algorithm is what was chosen in the $ n{i} $ step \\
+\item Either select $K = 1$ in KNN or pick one of the songs from the result of the previous KNN iteration and continue until $n_k$ is reached.\\
+\end{itemize}
+By using KNN, we attempt to smoothen the transition between each possible song result. \\
+The final thing we will discuss in the algorithms section is the choice of basis for our graph. By default, we chose 
+the prototype vectors of the ESOM and the distance between them as the edges in the graph. However, an alternative solution is to use the heights of the U-Matrix as the edges between neurons. The results are very similar, which is expected as the heights of the U-Matrix are the average distance to adjacent neurons. However, the actual songlist produced by the KNN song is strikingly different. We present the results in the following section.
+
+\subsection{Results}
+
+We present two different results of the playlist generation: the results of using the ESOM weights as the basis for our graphs and the results for 
+
 
 
 

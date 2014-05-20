@@ -15,24 +15,31 @@ namespace BestMatchKNN
         {
             var reader = new LRNReader("data.lrn");
             var songs = reader.ReadSongs().ToArray();
-
-            var bestMatches = ESOMDataWrapper.BestMatches.FromFile("bestmatches1.bm");
-            var ESOM = ESOMDataWrapper.ESOM.Fromfile("esom1.wts");
-
-            var graph = new NeuronGraph(ESOM.Data);
-
+            Console.WriteLine("LRN file read...");
+            var bestMatches = ESOMDataWrapper.BestMatches.FromFile("bigmap.bm");
+            Console.WriteLine("BM file read...");
+            // var ESOM = ESOMDataWrapper.ESOM.Fromfile("bigmap.wts");
+            var UMat = ESOMDataWrapper.UMatrix.FromFile("bigmap.umx");
+            Console.WriteLine("UMatrix file read...");
+            var graph = new NeuronGraph(UMat.Heights, 1);
+            Console.WriteLine("Built read...");
             int from = 23;
             var fromCoord = bestMatches.Index2BestMatch[from];
             int translatefrom = graph.translate(fromCoord);
 
-            var shortestPath = new ShortestNeuronPath(graph, translatefrom);
-
+           // var shortestPath = new ShortestNeuronPath(graph, translatefrom);
+            var shortestPath = new BellmanFordSP(graph, translatefrom);
+            Console.Write("Bellman Ford completed...");
             var tocoord = bestMatches.Index2BestMatch[296];
             var to = graph.translate(tocoord);
-
+            // Console.Write(shortestPath.HasPathTo(to));
             var result = shortestPath.HasPathTo(to) ? shortestPath.pathTo(to) : null;
 
             Song source = songs[from];
+
+            double accumulatedDistance = 0.0;
+
+            List<Song> resultSongs = new List<Song>();
 
             foreach (var directedEdge in result)
             {
@@ -45,21 +52,25 @@ namespace BestMatchKNN
                     //Console.Out.WriteLine("Length on BM list:" + bestMatches.BestMatch2Index[coord].Count);
                     var next = KNNBestMatches.FindKBestMatches(songs, bestMatches.BestMatch2Index[coord], source, 1);
                     source = next.FirstOrDefault() ?? source;
-                    
-                
-                    if(next.Count >= 1)
+                    resultSongs.Add(source);
+                    if (next.Count >= 1)
                     {
-                    foreach (var resultint in bestMatches.BestMatch2Index[coord])
-                    {
-                        Console.Out.WriteLine("ID: {0} and song name: {1}, artist: {2}", resultint,
-                        songs[resultint].TrackName, songs[resultint].ArtistName);
-                    }
+                        foreach (var resultint in bestMatches.BestMatch2Index[coord])
+                        {
+                            Console.Out.WriteLine("ID: {0} and song name: {1}, artist: {2}", resultint,
+                            songs[resultint].TrackName, songs[resultint].ArtistName);
+                        }
                     }
 
                 }
-                else Console.Out.WriteLine("Skipping a neuron");
+                
             }
-            
+            for (int i = 0; i < resultSongs.Count - 1; i++)
+            {
+                accumulatedDistance += Utilities.EuclideanDistance.Distance(resultSongs[i], resultSongs[i + 1]);
+            }
+            var avgdist = accumulatedDistance / resultSongs.Count;
+            Console.Out.WriteLine("Total euclidean distance: {0} and average distance: {1}", accumulatedDistance, avgdist);
             
             
 

@@ -9,9 +9,9 @@ namespace Graph
     public class DirectedEdge
     {
         readonly int _from, _to;
-        readonly double _weight;
+        readonly decimal _weight;
 
-        public DirectedEdge(int from, int to, double weight)
+        public DirectedEdge(int from, int to, decimal weight)
         {
             _from = from;
             _to = to;
@@ -30,7 +30,7 @@ namespace Graph
 
         }
 
-        public double weight()
+        public decimal weight()
         {
             return _weight;
         }

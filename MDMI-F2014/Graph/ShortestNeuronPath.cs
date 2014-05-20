@@ -5,9 +5,9 @@ namespace Graph
 {
     public class ShortestNeuronPath
     {
-        private readonly double[] _distTo; // distTo[v] = distance  of shortest s->v path
+        private readonly decimal[] _distTo; // distTo[v] = distance  of shortest s->v path
         private readonly DirectedEdge[] edgeTo; // edgeTo[v] = last edge on shortest s->v path
-        private readonly IndexMinPQ<Double> pq; // priority queue of vertices
+        private readonly IndexMinPQ<decimal> pq; // priority queue of vertices
 
         /**
      * Computes a shortest paths tree from <tt>s</tt> to every other vertex in
@@ -20,14 +20,14 @@ namespace Graph
 
         public ShortestNeuronPath(NeuronGraph G, int s)
         {
-            _distTo = new double[G.V()];
+            _distTo = new decimal[G.V()];
             edgeTo = new DirectedEdge[G.V()];
             for (int v = 0; v < G.V(); v++)
-                _distTo[v] = Double.PositiveInfinity;
-            _distTo[s] = 0.0;
+                _distTo[v] = decimal.MaxValue;
+            _distTo[s] = 0.0M;
 
             // relax vertices in order of distance from s
-            pq = new IndexMinPQ<Double>(G.V());
+            pq = new IndexMinPQ<decimal>(G.V());
             pq.Insert(s, _distTo[s]);
             while (!pq.IsEmpty())
             {
@@ -64,7 +64,7 @@ namespace Graph
 
         public bool HasPathTo(int V)
         {
-            return _distTo[V] < Double.PositiveInfinity;
+            return _distTo[V] < decimal.MaxValue;
         }
     }
 }
