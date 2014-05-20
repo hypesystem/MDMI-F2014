@@ -1,2 +1,9 @@
 \subsection{Normalization}
 \label{sec:preprocessing_normalization}
+
+ESOM makes it possible to easily normalize the data it works with, with either z-score or min-max normalization.
+We chose to normalize all of the statistical moments we aggregated the data into, so each of these weighs
+the same when calculating distances between songs.
+
+Min-max normalization was chosen as the data we aggregated was already limited to a specific range. As such, all
+that needed to be done was a mapping from the different ranges of each moment to a common range from 0 to 1.
