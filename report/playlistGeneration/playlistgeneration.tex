@@ -30,6 +30,13 @@ Choosing from these songs is then done by using the K-Nearest Neighbours (KNN) a
 \item Select $ n_{i+1} $ from $ l_{i+1} $ with KNN such that the source song of the algorithm is what was chosen in the $ n{i} $ step \\
 \item Either select $K = 1$ in KNN or pick one of the songs from the result of the previous KNN iteration and continue until $n_k$ is reached.\\
 \end{itemize}
+
+\begin{figure}[htb!]
+	\centering
+	\includegraphics[width=\textwidth]{figures/playlist-generation}
+	\caption{Illustration of the playlist generation. First, the start and end songs are mapped to the neurons that contain them. Then a shortest path is found between the neurons. Starting from the start song \(S0\) the KNN is found in the set of songs represented by the next neuron. This is continued until the next neuron is end neuron. The playlist is finished with the end song.}
+\end{figure}
+
 By using KNN, we attempt to smoothen the transition between each possible song result. \\
 The final thing we will discuss in the algorithms section is the choice of basis for our graph. By default, we chose 
 the prototype vectors of the ESOM and the distance between them as the edges in the graph. However, an alternative solution is to use the heights of the U-Matrix as the edges between neurons. The results are very similar, which is expected as the heights of the U-Matrix are the average distance to adjacent neurons. However, the actual songlist produced by the KNN song is strikingly different. We present the results in the following section.
