@@ -21,7 +21,7 @@ namespace BestMatchKNN
             var ESOM = ESOMDataWrapper.ESOM.Fromfile("bigmap.wts");
             var UMat = ESOMDataWrapper.UMatrix.FromFile("bigmap.umx");
             Console.WriteLine("UMatrix file read...");
-            var graph = new NeuronGraph(ESOM.Data, 0);
+            var graph = new NeuronGraph(UMat.Heights, 0);
             Console.WriteLine("Built read...");
             int from = 23;
             var fromCoord = bestMatches.Index2BestMatch[from];
@@ -57,8 +57,8 @@ namespace BestMatchKNN
                     {
                         foreach (var resultint in bestMatches.BestMatch2Index[coord])
                         {
-                           // Console.Out.WriteLine("Song Name: {0} ... Artist Name: {1}", 
-                           // songs[resultint].TrackName, songs[resultint].ArtistName);
+                           Console.Out.WriteLine("Song Name: {0} ... Artist Name: {1}", 
+                            songs[resultint].TrackName, songs[resultint].ArtistName);
                         }
                     }
 
