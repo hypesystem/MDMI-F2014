@@ -10,8 +10,7 @@ namespace Graph
 {
     public class NeuronGraph
     {
-       
-
+        
         private List<DirectedEdge>[] _adjacencyList;
         private Dictionary<Int32, double[]> _prototypeVectors;
         private int _V; // No of Vertices
@@ -49,10 +48,11 @@ namespace Graph
                 int top = i - _rowLength;
                 int bot = i + _rowLength;
 
-                if (left%_rowLength == 0) left += _rowLength;
-                if (right%_rowLength != 0) right -= _rowLength;
+                if (i%_rowLength == 0) left += _rowLength;
+                if (right%_rowLength == 0)
+                {right -= _rowLength;}
                 if (top < 0) top += _V;
-                if (bot < _V) bot -= _V;
+                if (bot >= _V) bot -= _V;
 
                 addEdge(i, left);
                 addEdge(i, right);
@@ -97,17 +97,19 @@ namespace Graph
         /// <param name="col"></param>
         /// <param name="kv"></param>
         /// <returns></returns>
-        public static Tuple<int,int> translate(int col, int kv)
+        public Tuple<int,int> translate( int kv)
         {
-            int x = kv/col;
-            int y = kv - (x*col); 
+            int x = kv/_rowLength;
+            int y = kv - (x*_rowLength); 
 
-            return new Tuple<int, int>(x, y);
+            return new Tuple<int, int>(y, x);
         }
 
-        public static int translate(Tuple<int, int> xy, int col)
+        
+
+        public int translate(Tuple<int, int> xy)
         {
-            return (xy.Item1*col) + xy.Item2;
+            return (xy.Item2*_rowLength) + xy.Item1;
         }
     }
 }

@@ -34,5 +34,10 @@ namespace Graph
         {
             return _weight;
         }
+
+        public override string ToString()
+        {
+            return _from + " -> " + to() + ".:.";
+        }
     }
 }

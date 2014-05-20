@@ -24,6 +24,16 @@ namespace MillionSongsDataWrapper
             Timbre = timbre;
         }
 
+        public double[] DistanceArray()
+        {
+            List<double> list = new List<double>();
+            foreach (var aggregatese in AggregatesList)
+            {
+                list.AddRange(aggregatese.PropertyValuesList.ToArray());
+            }
+            return list.ToArray();
+        }
+
         private List<Aggregates> _aggregatesList;
 
         public List<Aggregates> AggregatesList
