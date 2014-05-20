@@ -18,9 +18,9 @@ The fields primarily used in this project, which also deserve a more thorough ex
 	\item \textbf{confidence} \\Confidence of the segment in percent.
 	\item \textbf{loudness start} \\The loudness at the beginning of the segment in dB.
 	\item \textbf{loudness max time} \\The time at which the loudness peaks in the segment in seconds.
-	\item \textbf{loudness max} \\The peak loudness of the segment in dB.
-	\item \textbf{pitches} \\A 12 dimensional vector describing the harmonic content of the segment. Each element of the vector corresponds to a note in the half-tone system, such as C, C\#, D etc.. The value of e.g the first element in the vector signifies how strongly the note C is represented in the segment, the second how strongly the note C\# is represented and so on.
-	\item \textbf{timbre} \\A 12 dimensional vector describing the spectral content of the segment. each element of the vector is the coefficient of a linear combination of 12 functions representing a spectral quality of the segment, such as brightness, flatness, strong attack etc..
+	\item \textbf{loudness max} \\The peak loudness of the segment in dB. See figure \ref{fig:loudness} in the figures section for a graphical representation.
+	\item \textbf{pitches} \\A 12 dimensional vector describing the harmonic content of the segment. Each element of the vector corresponds to a note in the half-tone system, such as C, C\#, D etc.. The value of e.g the first element in the vector signifies how strongly the note C is represented in the segment, the second how strongly the note C\# is represented and so on. See figure \ref{fig:pitch} in the figures section for a graphical representation.
+	\item \textbf{timbre} \\A 12 dimensional vector describing the spectral content of the segment. each element of the vector is the coefficient of a linear combination of 12 functions representing a spectral quality of the segment, such as brightness, flatness, strong attack etc.. See figure \ref{fig:timbre} in the figures section for a graphical representation.
 \end{itemize}
 \noindent The list of segments as a whole can be thought of as representing the small scale temporal characteristics of the song: how the song changes over time with respect to loudness, pitch and timbre.
 \\\\
