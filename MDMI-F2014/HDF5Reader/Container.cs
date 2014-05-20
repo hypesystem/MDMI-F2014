@@ -7,6 +7,9 @@ using HDF5DotNet;
 
 namespace HDF5Reader
 {
+    /// <summary>
+    /// Represents a file or group.
+    /// </summary>
     abstract class Container
     {
         public abstract H5FileOrGroupId Id {

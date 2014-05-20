@@ -54,7 +54,6 @@
     <Compile Include="Group.cs" />
     <Compile Include="Attribute.cs" />
     <Compile Include="IntegerAttribute.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Row.cs" />
     <Compile Include="ScalarDataset.cs" />

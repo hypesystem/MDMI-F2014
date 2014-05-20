@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace HDF5Reader
 {
+    /// <summary>
+    /// A row of data.
+    /// </summary>
     class Row
     {
         private Dictionary<string, object> _data;

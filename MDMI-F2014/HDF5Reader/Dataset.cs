@@ -7,6 +7,9 @@ using HDF5DotNet;
 
 namespace HDF5Reader
 {
+    /// <summary>
+    /// Represents a dataset, allowing it to be read.
+    /// </summary>
     abstract class Dataset : IDisposable
     {
         private string _datasetname;

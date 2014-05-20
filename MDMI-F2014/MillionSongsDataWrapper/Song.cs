@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace MillionSongsDataWrapper
 {
+    /// <summary>
+    /// Represents a single song. Contains aggregated data.
+    /// </summary>
     public class Song
     {
         public readonly string ArtistName;

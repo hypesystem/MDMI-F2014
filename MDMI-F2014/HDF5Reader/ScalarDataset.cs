@@ -8,6 +8,10 @@ using HDF5DotNet;
 
 namespace HDF5Reader
 {
+    /// <summary>
+    /// Scalar Datasets are theoretically like a single point with a whole bunch of dimensions. All of the data in the
+    /// dataset are of the same type.
+    /// </summary>
     class ScalarDataset : Dataset, IEnumerable<Row>
     {
         public ScalarDataset(Container container, string datasetname) : base(container, datasetname) { }

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace HDF5Reader
 {
+    /// <summary>
+    /// An attribute describes the type of a field.
+    /// </summary>
     abstract class Attribute
     {
         public readonly Encoding Encoding = new ASCIIEncoding();

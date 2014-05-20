@@ -5,6 +5,9 @@ using HDF5DotNet;
 
 namespace HDF5Reader
 {
+    /// <summary>
+    /// Compound datasets contain labeled data.
+    /// </summary>
     class CompoundDataset : Dataset
     {
         private Attribute[] _attributes;
