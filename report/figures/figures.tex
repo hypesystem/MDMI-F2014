@@ -2,29 +2,48 @@
 \label{sec:list_of_figures}
 
 
-\begin{figure}[h]
+\begin{figure}[h!]
+	\begin{tabular}{|p{\textwidth}|}
+		\hline
+		\begin{verbatim}
+			var file = new File(filename);
+			var metadata_group = file.GetGroup("metadata");
+			var song_data = metadata_group.GetCompoundDataset("songs");
+			string artist_name = song_data[0].GetString("artist_name");
+		\end{verbatim} \\
+		\hline
+	\end{tabular}
+	\caption{Example of syntax built to read HDF5 files (found in the \emph{HDF5Reader} library).}
+    \label{fig:hdf5-syntax}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{figures/playlist-generation}
+	\caption{Illustration of the playlist algorithm.}
+    \label{fig:playlist-gen}
+\end{figure}
+
+\begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{figures/loudness.jpg}
     \caption{Graphical representation of the loudness attributes of the segments from 39 seconds of "Around The World" by Daft Punk.}
     \label{fig:loudness}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{figures/pitch.jpg}
     \caption{Graphical representation of the ptich vector attributes of the segments from 39 seconds of "Around The World" by Daft Punk.}
     \label{fig:pitch}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{figures/timbre.jpg}
     \caption{Graphical representation of the timbre vector attributes of the segments from 39 seconds of "Around The World" by Daft Punk.}
     \label{fig:timbre}
 \end{figure}
-
-
-\newpage
 
 \begin{figure}[h!]
     \centering
@@ -33,14 +52,14 @@
     \label{fig:map}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width=\textwidth]{figures/ESOMSongs.PNG}
     \caption{Playlist description with ESOM path generation}
     \label{fig:esomres}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width=\textwidth]{figures/UMatSongs.PNG}
     \caption{Playlist description with UMat path generation}
