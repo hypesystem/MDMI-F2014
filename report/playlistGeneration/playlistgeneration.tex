@@ -5,7 +5,7 @@ This section details the practical application of our data mining efforts. First
 the overall concept of creating a bridging playlist between two songs. Next, we will describe the algorithms used in our applications. Finally, we will discuss further possibilities for playlist generation.
 
 \subsection{Concept}
-By using an ESOM to cluster and project our data set, we can use the two-dimensional grid of neurons to create paths between songs. A \'bridging playlist\' is found by creating a path between two neurons on the grid and relating songs in our data set to neurons on the path. The path is the shortest path between two neurons with each neuron having a connection to its adjacent neurons. The playlist generation can be explained with the following steps (see Figure \ref{fig:playlist-gen}):
+By using an ESOM to cluster and project our data set, we can use the two-dimensional grid of neurons to create paths between songs. A  playlist is found by creating a path between two neurons on the grid and relating songs in our data set to neurons on the path. The path is the shortest path between two neurons with each neuron having a connection to its adjacent neurons. The playlist generation can be explained with the following steps (see Figure \ref{fig:playlist-gen}):
 \begin{itemize}
 \item Select two songs from a list and identify their respective neurons on the grid.
 \item Let each neuron $ n_{k,i} $  have the property that it is connected to neurons $ ( n_{k+1,i} ; n_{k-1,n} ; n_{k,n+1} ; n_{k,n-1} ) $.
